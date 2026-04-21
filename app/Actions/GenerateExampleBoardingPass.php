@@ -43,7 +43,7 @@ class GenerateExampleBoardingPass
             ->setSecondaryFields(
                 FieldContent::make('name')
                     ->withLabel('Name')
-                    ->withValue('Dan Johnson'),
+                    ->withValue('Freek Van der Herten'),
                 FieldContent::make('gate')
                     ->withLabel('Gate')
                     ->withValue('D64')
