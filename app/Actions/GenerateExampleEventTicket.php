@@ -18,23 +18,23 @@ class GenerateExampleEventTicket
     public function execute(): MobilePass
     {
         $pass = EventTicketPassBuilder::make()
-            ->setOrganisationName('Laracon')
+            ->setOrganisationName('Laracon US')
             ->setSerialNumber('pending')
-            ->setDescription('Laracon 2026 — Admission Ticket')
-            ->setBackgroundColour(Colour::makeFromHex('#1B1B18'))
+            ->setDescription('Laracon US 2026 — Admission Ticket')
+            ->setBackgroundColour(Colour::makeFromHex('#0A0A0A'))
             ->setForegroundColour(Colour::makeFromHex('#FFFFFF'))
-            ->setLabelColour(Colour::makeFromHex('#F53003'))
+            ->setLabelColour(Colour::makeFromHex('#FF2D20'))
             ->setHeaderFields(
-                FieldContent::make('date')
-                    ->withLabel('Date')
-                    ->withValue(now()->addMonth()->setTime(9, 0)->toIso8601String())
+                FieldContent::make('doors')
+                    ->withLabel('Doors')
+                    ->withValue('2026-07-28T08:30:00-04:00')
                     ->usingDateType(DateType::Medium)
                     ->usingTimeType(TimeStyleType::Short),
             )
             ->setPrimaryFields(
                 FieldContent::make('event')
                     ->withLabel('Event')
-                    ->withValue('Laracon 2026'),
+                    ->withValue('Laracon US 2026'),
             )
             ->setSecondaryFields(
                 FieldContent::make('attendee')
@@ -42,19 +42,16 @@ class GenerateExampleEventTicket
                     ->withValue('Freek Van der Herten'),
                 FieldContent::make('venue')
                     ->withLabel('Venue')
-                    ->withValue('Kursaal Oostende'),
+                    ->withValue('SoWa Power Station'),
             )
             ->setAuxiliaryFields(
-                FieldContent::make('row')
-                    ->withLabel('Row')
-                    ->withValue('C'),
+                FieldContent::make('location')
+                    ->withLabel('Location')
+                    ->withValue('Boston, MA'),
                 FieldContent::make('seat')
                     ->withLabel('Seat')
-                    ->withValue('42')
+                    ->withValue('General Admission')
                     ->showMessageWhenChanged('Your seat has changed to %@'),
-                FieldContent::make('section')
-                    ->withLabel('Section')
-                    ->withValue('Main Floor'),
             )
             ->setLogoImage(
                 Image::make(
