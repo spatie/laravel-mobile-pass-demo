@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -36,19 +35,13 @@ class GenerateExampleCoupon
                 x2Path: public_path('images/laravel-king-logo@2x.png'),
                 x3Path: public_path('images/laravel-king-logo@3x.png'),
             )
+            ->setBarcode(BarcodeType::Qr, 'https://www.youtube.com/watch?v=dQw4w9WgXcQ')
             ->save();
-
-        $barcode = Barcode::make(
-            BarcodeType::Qr,
-            'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        )->toArray();
 
         $pass->update([
             'content' => [
                 ...$pass->content,
                 'serialNumber' => $pass->id,
-                'barcode' => $barcode,
-                'barcodes' => [$barcode],
             ],
             'images' => [...$pass->images, 'strip' => [
                 'x1Path' => public_path('images/laravel-king-strip.png'),

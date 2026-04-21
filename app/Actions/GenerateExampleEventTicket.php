@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use Illuminate\Support\Str;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\EventTicketPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
@@ -46,16 +45,13 @@ class GenerateExampleEventTicket
                 x2Path: public_path('images/laracon-icon@2x.png'),
                 x3Path: public_path('images/laracon-icon@3x.png'),
             )
+            ->setBarcode(BarcodeType::Qr, Str::random(32))
             ->save();
-
-        $barcode = Barcode::make(BarcodeType::Qr, Str::random(32))->toArray();
 
         $pass->update([
             'content' => [
                 ...$pass->content,
                 'serialNumber' => $pass->id,
-                'barcode' => $barcode,
-                'barcodes' => [$barcode],
             ],
             'images' => [
                 ...$pass->images,

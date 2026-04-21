@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use Illuminate\Support\Str;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -34,16 +33,13 @@ class GenerateExampleStoreCard
                 x2Path: public_path('images/brew-code-icon@2x.png'),
                 x3Path: public_path('images/brew-code-icon@3x.png'),
             )
+            ->setBarcode(BarcodeType::Qr, Str::random(24))
             ->save();
-
-        $barcode = Barcode::make(BarcodeType::Qr, Str::random(24))->toArray();
 
         $pass->update([
             'content' => [
                 ...$pass->content,
                 'serialNumber' => $pass->id,
-                'barcode' => $barcode,
-                'barcodes' => [$barcode],
             ],
             'images' => [
                 ...$pass->images,

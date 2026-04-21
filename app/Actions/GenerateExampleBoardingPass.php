@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Enums\TimeStyleType;
@@ -49,16 +48,13 @@ class GenerateExampleBoardingPass
                 x2Path: public_path('images/artisan-airways-footer@2x.png'),
                 x3Path: public_path('images/artisan-airways-footer@3x.png'),
             )
+            ->setBarcode(BarcodeType::Pdf417, Str::random(128))
             ->save();
-
-        $barcode = Barcode::make(BarcodeType::Pdf417, Str::random(128))->toArray();
 
         $pass->update([
             'content' => [
                 ...$pass->content,
                 'serialNumber' => $pass->id,
-                'barcode' => $barcode,
-                'barcodes' => [$barcode],
             ],
         ]);
 
