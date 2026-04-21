@@ -2,6 +2,9 @@
 
 use App\Actions\GenerateExampleBoardingPass;
 use App\Actions\GenerateExampleCoupon;
+use App\Actions\GenerateExampleEventTicket;
+use App\Actions\GenerateExampleGenericPass;
+use App\Actions\GenerateExampleStoreCard;
 use App\Livewire\PassDetail;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -10,8 +13,11 @@ Route::get('/', fn () => view('welcome'));
 
 Route::get('/new-pass/{type}', function (string $type) {
     $action = match ($type) {
-        'coupon' => GenerateExampleCoupon::class,
         'boarding-pass' => GenerateExampleBoardingPass::class,
+        'coupon' => GenerateExampleCoupon::class,
+        'event-ticket' => GenerateExampleEventTicket::class,
+        'generic' => GenerateExampleGenericPass::class,
+        'store-card' => GenerateExampleStoreCard::class,
         default => abort(404),
     };
 

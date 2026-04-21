@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Actions;
+
+use Illuminate\Support\Str;
+use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
+use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
+use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
+use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
+use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
+use Spatie\LaravelMobilePass\Enums\BarcodeType;
+use Spatie\LaravelMobilePass\Models\MobilePass;
+
+class GenerateExampleStoreCard
+{
+    public function execute(): MobilePass
+    {
+        $pass = StoreCardPassBuilder::make()
+            ->setOrganisationName('Brew & Code')
+            ->setSerialNumber('pending')
+            ->setDescription('Brew & Code loyalty card')
+            ->setBackgroundColour(Colour::makeFromHex('#3B2417'))
+            ->setForegroundColour(Colour::makeFromHex('#F7E6C4'))
+            ->setLabelColour(Colour::makeFromHex('#E2C299'))
+            ->setHeaderFields(
+                FieldContent::make('member-since')
+                    ->withLabel('Member')
+                    ->withValue('Since 2024'),
+            )
+            ->setPrimaryFields(
+                FieldContent::make('balance')
+                    ->withLabel('Points')
+                    ->withValue('7 / 10')
+                    ->showMessageWhenChanged('You now have %@ points'),
+            )
+            ->setSecondaryFields(
+                FieldContent::make('member')
+                    ->withLabel('Member')
+                    ->withValue('Freek Van der Herten'),
+                FieldContent::make('tier')
+                    ->withLabel('Tier')
+                    ->withValue('Roaster'),
+            )
+            ->setAuxiliaryFields(
+                FieldContent::make('next-reward')
+                    ->withLabel('Next reward')
+                    ->withValue('Free flat white'),
+            )
+            ->setLogoImage(
+                Image::make(
+                    x1Path: public_path('images/brew-code-logo.png'),
+                    x2Path: public_path('images/brew-code-logo@2x.png'),
+                    x3Path: public_path('images/brew-code-logo@3x.png'),
+                )
+            )
+            ->setIconImage(
+                Image::make(
+                    x1Path: public_path('images/brew-code-icon.png'),
+                    x2Path: public_path('images/brew-code-icon@2x.png'),
+                    x3Path: public_path('images/brew-code-icon@3x.png'),
+                )
+            )
+            ->save();
+
+        $barcode = Barcode::make(BarcodeType::QR, Str::random(24))->toArray();
+
+        $pass->update([
+            'content' => [
+                ...$pass->content,
+                'serialNumber' => $pass->id,
+                'barcode' => $barcode,
+                'barcodes' => [$barcode],
+            ],
+            'images' => [
+                ...$pass->images,
+                'strip' => [
+                    'x1Path' => public_path('images/brew-code-strip.png'),
+                    'x2Path' => public_path('images/brew-code-strip@2x.png'),
+                    'x3Path' => public_path('images/brew-code-strip@3x.png'),
+                ],
+            ],
+        ]);
+
+        return $pass;
+    }
+}
