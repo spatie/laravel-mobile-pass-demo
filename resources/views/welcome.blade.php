@@ -1,59 +1,26 @@
 <x-layouts.app>
     <div class="space-y-6 sm:space-y-10">
         {{-- Hero --}}
-        <x-card class="overflow-hidden">
-            <div class="grid gap-10 lg:grid-cols-5 lg:items-center">
-                <div class="space-y-6 lg:col-span-3">
-                    <p class="inline-flex items-center gap-2 rounded-full bg-teal-soft px-3 py-1 text-xs font-medium tracking-wide text-teal uppercase">
-                        spatie/laravel-mobile-pass
-                    </p>
-                    <h1 class="max-w-[22ch] text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.05]">
-                        Apple Wallet passes, generated from Laravel.
-                    </h1>
-                    <p class="max-w-[58ch] text-base/7 text-pretty text-ink-muted">
-                        Pick any of the five Apple Wallet pass templates below. The demo generates a real, signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> file you can install on an iPhone, then push a live update and watch Wallet pull the change.
-                    </p>
-                    <div class="flex flex-wrap items-center gap-3">
-                        <x-button href="https://github.com/spatie/laravel-mobile-pass" variant="primary" target="_blank" rel="noopener">
-                            Get the package
-                            <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" /></svg>
-                        </x-button>
-                        <a href="https://spatie.be/docs/laravel-mobile-pass" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-1 text-sm font-medium text-ink-muted hover:text-teal">
-                            Read the docs
-                            <svg class="size-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0 0 1.5h8.69L3.22 16.72a.75.75 0 1 0 1.06 1.06L14 8.06v8.69a.75.75 0 0 0 1.5 0V5.5H4.25Z" clip-rule="evenodd" /></svg>
-                        </a>
-                    </div>
-                </div>
-
-                {{-- Pass preview stack --}}
-                <div class="relative hidden h-64 lg:col-span-2 lg:block" aria-hidden="true">
-                    <x-hero-mini-pass
-                        class="absolute top-4 left-4 w-[72%] -rotate-6"
-                        eyebrow="Event"
-                        bg="#0A0A0A"
-                        accent="#FF2D20"
-                        title="The Eras Tour"
-                        label="Section"
-                        value="Floor A · Row 12"
-                    />
-                    <x-hero-mini-pass
-                        class="absolute top-2 right-2 w-[72%] rotate-3 shadow-lg"
-                        eyebrow="Airline"
-                        bg="#172A3D"
-                        accent="#197593"
-                        title="BRU → SFO"
-                        label="Passenger"
-                        value="Freek Van der Herten"
-                    />
-                    <x-hero-mini-pass
-                        class="absolute bottom-0 left-10 w-[72%] rotate-[1deg] shadow-xl"
-                        eyebrow="Loyalty"
-                        bg="#197593"
-                        accent="#F53003"
-                        title="12,480 pts"
-                        label="Member"
-                        value="Gold · since 2023"
-                    />
+        <x-card>
+            <div class="space-y-6">
+                <p class="inline-flex items-center gap-2 rounded-full bg-teal-soft px-3 py-1 text-xs font-medium tracking-wide text-teal uppercase">
+                    spatie/laravel-mobile-pass
+                </p>
+                <h1 class="max-w-[22ch] text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.05]">
+                    Apple Wallet passes, generated from Laravel.
+                </h1>
+                <p class="max-w-[58ch] text-base/7 text-pretty text-ink-muted">
+                    Pick any of the five Apple Wallet pass templates below. The demo generates a real, signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> file you can install on an iPhone, then push a live update and watch Wallet pull the change.
+                </p>
+                <div class="flex flex-wrap items-center gap-3">
+                    <x-button href="https://github.com/spatie/laravel-mobile-pass" variant="primary" target="_blank" rel="noopener">
+                        Get the package
+                        <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" /></svg>
+                    </x-button>
+                    <a href="https://spatie.be/docs/laravel-mobile-pass" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-1 text-sm font-medium text-ink-muted hover:text-teal">
+                        Read the docs
+                        <svg class="size-3.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0 0 1.5h8.69L3.22 16.72a.75.75 0 1 0 1.06 1.06L14 8.06v8.69a.75.75 0 0 0 1.5 0V5.5H4.25Z" clip-rule="evenodd" /></svg>
+                    </a>
                 </div>
             </div>
         </x-card>
