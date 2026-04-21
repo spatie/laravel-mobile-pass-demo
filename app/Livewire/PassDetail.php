@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Actions\GenerateQRCodeForPass;
+use App\Support\PassType;
 use Livewire\Component;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
@@ -31,7 +32,7 @@ class PassDetail extends Component
         match ($this->mobilePass->builder_name) {
             CouponPassBuilder::name() => $this->expireCoupon(),
             AirlinePassBuilder::name() => $this->updateField('seat', rand(0, 10) * 10 .'F'),
-            EventTicketPassBuilder::name() => $this->updateField('seat', (string) rand(1, 120)),
+            EventTicketPassBuilder::name() => $this->updateField('seat', 'Row '.chr(rand(65, 80)).' · Seat '.rand(1, 120)),
             StoreCardPassBuilder::name() => $this->updateField('balance', rand(1, 10).' / 10'),
             GenericPassBuilder::name() => $this->updateField('books-out', (string) rand(0, 12)),
         };
@@ -57,15 +58,10 @@ class PassDetail extends Component
             ->save();
     }
 
-    protected function simulatedChangeSummary(): string
+    public function passType(): PassType
     {
-        return match ($this->mobilePass->builder_name) {
-            CouponPassBuilder::name() => 'Simulate expired coupon',
-            AirlinePassBuilder::name() => 'Simulate seat change',
-            EventTicketPassBuilder::name() => 'Simulate seat reassignment',
-            StoreCardPassBuilder::name() => 'Simulate points change',
-            GenericPassBuilder::name() => 'Simulate books-on-loan change',
-        };
+        return collect(PassType::cases())
+            ->first(fn (PassType $type) => $type->builderName() === $this->mobilePass->builder_name);
     }
 
     public function render()
@@ -73,9 +69,9 @@ class PassDetail extends Component
         $this->installed = $this->mobilePass->registrations()->exists();
 
         return view('livewire.pass-detail')->with([
+            'passType' => $this->passType(),
             'downloadQr' => app(GenerateQRCodeForPass::class)->execute($this->mobilePass),
             'downloadUrl' => route('pass.download', ['mobilePass' => $this->mobilePass]),
-            'changeSummary' => $this->simulatedChangeSummary(),
         ]);
     }
 }

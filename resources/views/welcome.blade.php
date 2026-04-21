@@ -1,34 +1,80 @@
-@extends('layout')
+<x-layouts.app>
+    <div class="space-y-6 sm:space-y-8">
+        {{-- Hero --}}
+        <x-card>
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+                <div class="space-y-4">
+                    <p class="inline-flex items-center gap-2 rounded-full bg-teal-soft px-3 py-1 text-xs font-medium tracking-wide text-teal uppercase">
+                        spatie/laravel-mobile-pass
+                    </p>
+                    <h1 class="max-w-[24ch] text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl">
+                        Apple Wallet passes, generated from Laravel.
+                    </h1>
+                    <p class="max-w-[60ch] text-base/7 text-pretty text-ink-muted">
+                        Pick any of the five Apple Wallet pass templates below and the demo will generate a real, signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> file you can install on an iPhone. Once installed, simulate an update and watch Wallet pull the change.
+                    </p>
+                </div>
+                <div class="shrink-0 lg:max-w-xs">
+                    <x-button href="https://github.com/spatie/laravel-mobile-pass" variant="primary" target="_blank" rel="noopener" class="w-full">
+                        Get the package
+                        <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" /></svg>
+                    </x-button>
+                </div>
+            </div>
+        </x-card>
 
-@section('content')
-    <div class="text-center space-y-8 w-full">
-        <div class="space-y-2">
-            <h1 class="text-3xl font-medium">Create a demo pass</h1>
-            <p class="text-sm text-[#706f6c] dark:text-[#A1A09A]">
-                Every Apple Wallet pass type, powered by <a class="underline hover:text-[#F53003]" href="https://github.com/spatie/laravel-mobile-pass" target="_blank" rel="noopener">spatie/laravel-mobile-pass</a>
-            </p>
-        </div>
+        {{-- Pass picker --}}
+        <section aria-labelledby="pass-picker">
+            <div class="mb-4 flex items-end justify-between gap-4 px-1">
+                <div>
+                    <h2 id="pass-picker" class="text-xl font-semibold tracking-tight text-ink">Generate a pass</h2>
+                    <p class="text-sm/6 text-ink-muted">Each tile creates an example pass you can install in Apple Wallet.</p>
+                </div>
+            </div>
+            <ul role="list" class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                @foreach (\App\Support\PassType::cases() as $type)
+                    <li>
+                        <x-pass-tile :type="$type" />
+                    </li>
+                @endforeach
+            </ul>
+        </section>
 
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-            <x-choose-pass-type type="boarding-pass" name="Boarding pass">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M482.3 192c34.2 0 93.7 29 93.7 64c0 36-59.5 64-93.7 64l-116.6 0L265.2 495.9c-5.7 10-16.3 16.1-27.8 16.1l-56.2 0c-10.6 0-18.3-10.2-15.4-20.4l49-171.6L112 320 68.8 377.6c-3 4-7.8 6.4-12.8 6.4l-42 0c-7.8 0-14-6.3-14-14c0-1.3 .2-2.6 .5-3.9L32 256 .5 145.9c-.4-1.3-.5-2.6-.5-3.9c0-7.8 6.3-14 14-14l42 0c5 0 9.8 2.4 12.8 6.4L112 192l102.9 0-49-171.6C162.9 10.2 170.6 0 181.2 0l56.2 0c11.5 0 22.1 6.2 27.8 16.1L365.7 192l116.6 0z"/></svg>
-            </x-choose-pass-type>
-
-            <x-choose-pass-type type="coupon" name="Coupon">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M14 2.2C22.5-1.7 32.5-.3 39.6 5.8L80 40.4 120.4 5.8c9-7.7 22.3-7.7 31.2 0L192 40.4 232.4 5.8c9-7.7 22.3-7.7 31.2 0L304 40.4 344.4 5.8c7.1-6.1 17.1-7.5 25.6-3.6s14 12.4 14 21.8l0 464c0 9.4-5.5 17.9-14 21.8s-18.5 2.5-25.6-3.6L304 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L192 471.6l-40.4 34.6c-9 7.7-22.3 7.7-31.2 0L80 471.6 39.6 506.2c-7.1 6.1-17.1 7.5-25.6 3.6S0 497.4 0 488L0 24C0 14.6 5.5 6.1 14 2.2zM96 144c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 144zM80 352c0 8.8 7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 336c-8.8 0-16 7.2-16 16zM96 240c-8.8 0-16 7.2-16 16s7.2 16 16 16l192 0c8.8 0 16-7.2 16-16s-7.2-16-16-16L96 240z"/></svg>
-            </x-choose-pass-type>
-
-            <x-choose-pass-type type="event-ticket" name="Event ticket">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M64 64C28.7 64 0 92.7 0 128L0 192c0 8.8 7.4 15.7 15.7 18.6C34.5 217.1 48 235 48 256s-13.5 38.9-32.3 45.4C7.4 304.3 0 311.2 0 320l0 64c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-64c0-8.8-7.4-15.7-15.7-18.6C541.5 294.9 528 277 528 256s13.5-38.9 32.3-45.4c8.3-2.9 15.7-9.8 15.7-18.6l0-64c0-35.3-28.7-64-64-64L64 64zm64 112l0 160c0 8.8 7.2 16 16 16l288 0c8.8 0 16-7.2 16-16l0-160c0-8.8-7.2-16-16-16l-288 0c-8.8 0-16 7.2-16 16zM96 160c0-17.7 14.3-32 32-32l320 0c17.7 0 32 14.3 32 32l0 192c0 17.7-14.3 32-32 32l-320 0c-17.7 0-32-14.3-32-32l0-192z"/></svg>
-            </x-choose-pass-type>
-
-            <x-choose-pass-type type="store-card" name="Store card">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm48 256l160 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-160 0c-8.8 0-16-7.2-16-16s7.2-16 16-16zm192-112c0 8.8-7.2 16-16 16l-176 0c-8.8 0-16-7.2-16-16s7.2-16 16-16l176 0c8.8 0 16 7.2 16 16zM0 128l576 0 0 64L0 192l0-64z"/></svg>
-            </x-choose-pass-type>
-
-            <x-choose-pass-type type="generic" name="Generic">
-                <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M96 0C43 0 0 43 0 96L0 416c0 53 43 96 96 96l288 0 32 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l0-64c17.7 0 32-14.3 32-32l0-320c0-17.7-14.3-32-32-32L384 0 96 0zm0 384l256 0 0 64L96 448c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16zm16 48l192 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-192 0c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
-            </x-choose-pass-type>
-        </div>
+        {{-- How it works --}}
+        <section aria-labelledby="how-it-works" class="grid gap-4 lg:grid-cols-3">
+            <x-card>
+                <div class="space-y-2">
+                    <div class="flex size-9 items-center justify-center rounded bg-teal-soft text-teal">
+                        <svg viewBox="0 0 20 20" class="size-5" fill="currentColor"><path d="M3 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4Zm3 1.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H6Zm0 3a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H6Zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1H6Z"/></svg>
+                    </div>
+                    <h3 id="how-it-works" class="text-base font-semibold text-ink">1. Pick a template</h3>
+                    <p class="text-sm/6 text-pretty text-ink-muted">
+                        Each tile maps to one of the package’s Apple builders: airline, coupon, event ticket, store card, or generic.
+                    </p>
+                </div>
+            </x-card>
+            <x-card>
+                <div class="space-y-2">
+                    <div class="flex size-9 items-center justify-center rounded bg-teal-soft text-teal">
+                        <svg viewBox="0 0 20 20" class="size-5" fill="currentColor"><path d="M5 3a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H5Zm3 4h4v1H8V7Zm-1 3h6v1H7v-1Zm0 3h6v1H7v-1Z"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold text-ink">2. Install on iPhone</h3>
+                    <p class="text-sm/6 text-pretty text-ink-muted">
+                        Scan the on-screen QR code with your iPhone’s camera and tap <em class="text-ink">Add to Apple Wallet</em>.
+                    </p>
+                </div>
+            </x-card>
+            <x-card>
+                <div class="space-y-2">
+                    <div class="flex size-9 items-center justify-center rounded bg-teal-soft text-teal">
+                        <svg viewBox="0 0 20 20" class="size-5" fill="currentColor"><path d="M10 2a8 8 0 1 0 8 8h-2a6 6 0 1 1-6-6V2Zm5 1.6a1 1 0 0 0-1.4 1.4l1.4 1.4-3 3 1.4 1.4 3-3 1.4 1.4a1 1 0 0 0 1.4-1.4l-4.2-4.2Z"/></svg>
+                    </div>
+                    <h3 class="text-base font-semibold text-ink">3. Push an update</h3>
+                    <p class="text-sm/6 text-pretty text-ink-muted">
+                        Trigger a change from the detail page. Apple notifies the device and Wallet pulls the new version automatically.
+                    </p>
+                </div>
+            </x-card>
+        </section>
     </div>
-@endsection
+</x-layouts.app>

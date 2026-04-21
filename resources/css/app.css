@@ -8,4 +8,15 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Spatie OSS palette. */
+    --color-parchment: #eae8e5;
+    --color-parchment-strong: #cac8c4;
+    --color-ink: #172a3d;
+    --color-ink-muted: #5b6b7d;
+    --color-teal: #197593;
+    --color-teal-soft: rgba(202, 225, 232, 0.45);
+    --color-surface: #ffffff;
+    --color-surface-sunken: #f9f8f7;
+    --color-laravel: #f53003;
 }
