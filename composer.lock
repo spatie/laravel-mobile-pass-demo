@@ -3730,16 +3730,16 @@
         },
         {
             "name": "spatie/laravel-mobile-pass",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-mobile-pass.git",
-                "reference": "9066b3fafec94e21f0f8b18dfae5696405ad7642"
+                "reference": "2bf302bd988a0a432fe2a7b8497987c9fb067ee2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/9066b3fafec94e21f0f8b18dfae5696405ad7642",
-                "reference": "9066b3fafec94e21f0f8b18dfae5696405ad7642",
+                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/2bf302bd988a0a432fe2a7b8497987c9fb067ee2",
+                "reference": "2bf302bd988a0a432fe2a7b8497987c9fb067ee2",
                 "shasum": ""
             },
             "require": {
@@ -3805,7 +3805,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-mobile-pass/issues",
-                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.1.1"
+                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.1.2"
             },
             "funding": [
                 {
@@ -3813,7 +3813,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-21T14:35:04+00:00"
+            "time": "2026-04-21T14:55:26+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
