@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
@@ -39,18 +38,14 @@ class GenerateExampleGenericPass
                 changeMessage: 'You now have :value books on loan',
             )
             ->setLogoImage(
-                Image::make(
-                    x1Path: public_path('images/spatie-library-logo.png'),
-                    x2Path: public_path('images/spatie-library-logo@2x.png'),
-                    x3Path: public_path('images/spatie-library-logo@3x.png'),
-                )
+                x1Path: public_path('images/spatie-library-logo.png'),
+                x2Path: public_path('images/spatie-library-logo@2x.png'),
+                x3Path: public_path('images/spatie-library-logo@3x.png'),
             )
             ->setIconImage(
-                Image::make(
-                    x1Path: public_path('images/spatie-library-icon.png'),
-                    x2Path: public_path('images/spatie-library-icon@2x.png'),
-                    x3Path: public_path('images/spatie-library-icon@3x.png'),
-                )
+                x1Path: public_path('images/spatie-library-icon.png'),
+                x2Path: public_path('images/spatie-library-icon@2x.png'),
+                x3Path: public_path('images/spatie-library-icon@3x.png'),
             )
             ->save();
 

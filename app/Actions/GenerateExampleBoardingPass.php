@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Enums\TimeStyleType;
@@ -37,25 +36,19 @@ class GenerateExampleBoardingPass
             )
             ->addAuxiliaryField('class', 'Economy')
             ->setLogoImage(
-                Image::make(
-                    x1Path: public_path('images/artisan-airways-logo.png'),
-                    x2Path: public_path('images/artisan-airways-logo@2x.png'),
-                    x3Path: public_path('images/artisan-airways-logo@3x.png'),
-                )
+                x1Path: public_path('images/artisan-airways-logo.png'),
+                x2Path: public_path('images/artisan-airways-logo@2x.png'),
+                x3Path: public_path('images/artisan-airways-logo@3x.png'),
             )
             ->setIconImage(
-                Image::make(
-                    x1Path: public_path('images/artisan-airways-icon.png'),
-                    x2Path: public_path('images/artisan-airways-icon@2x.png'),
-                    x3Path: public_path('images/artisan-airways-icon@3x.png'),
-                )
+                x1Path: public_path('images/artisan-airways-icon.png'),
+                x2Path: public_path('images/artisan-airways-icon@2x.png'),
+                x3Path: public_path('images/artisan-airways-icon@3x.png'),
             )
             ->setFooterImage(
-                Image::make(
-                    x1Path: public_path('images/artisan-airways-footer.png'),
-                    x2Path: public_path('images/artisan-airways-footer@2x.png'),
-                    x3Path: public_path('images/artisan-airways-footer@3x.png'),
-                )
+                x1Path: public_path('images/artisan-airways-footer.png'),
+                x2Path: public_path('images/artisan-airways-footer@2x.png'),
+                x3Path: public_path('images/artisan-airways-footer@3x.png'),
             )
             ->save();
 

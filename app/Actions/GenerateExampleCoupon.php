@@ -5,7 +5,6 @@ namespace App\Actions;
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -29,18 +28,14 @@ class GenerateExampleCoupon
                 showDateAsRelative: true,
             )
             ->setIconImage(
-                Image::make(
-                    x1Path: public_path('images/laravel-king-icon.png'),
-                    x2Path: public_path('images/laravel-king-icon@2x.png'),
-                    x3Path: public_path('images/laravel-king-icon@3x.png'),
-                )
+                x1Path: public_path('images/laravel-king-icon.png'),
+                x2Path: public_path('images/laravel-king-icon@2x.png'),
+                x3Path: public_path('images/laravel-king-icon@3x.png'),
             )
             ->setLogoImage(
-                Image::make(
-                    x1Path: public_path('images/laravel-king-logo.png'),
-                    x2Path: public_path('images/laravel-king-logo@2x.png'),
-                    x3Path: public_path('images/laravel-king-logo@3x.png'),
-                )
+                x1Path: public_path('images/laravel-king-logo.png'),
+                x2Path: public_path('images/laravel-king-logo@2x.png'),
+                x3Path: public_path('images/laravel-king-logo@3x.png'),
             )
             ->save();
 

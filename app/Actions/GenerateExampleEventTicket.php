@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\EventTicketPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
@@ -39,18 +38,14 @@ class GenerateExampleEventTicket
                 changeMessage: 'Your seat has changed to :value',
             )
             ->setLogoImage(
-                Image::make(
-                    x1Path: public_path('images/laracon-logo.png'),
-                    x2Path: public_path('images/laracon-logo@2x.png'),
-                    x3Path: public_path('images/laracon-logo@3x.png'),
-                )
+                x1Path: public_path('images/laracon-logo.png'),
+                x2Path: public_path('images/laracon-logo@2x.png'),
+                x3Path: public_path('images/laracon-logo@3x.png'),
             )
             ->setIconImage(
-                Image::make(
-                    x1Path: public_path('images/laracon-icon.png'),
-                    x2Path: public_path('images/laracon-icon@2x.png'),
-                    x3Path: public_path('images/laracon-icon@3x.png'),
-                )
+                x1Path: public_path('images/laracon-icon.png'),
+                x2Path: public_path('images/laracon-icon@2x.png'),
+                x3Path: public_path('images/laracon-icon@3x.png'),
             )
             ->save();
 

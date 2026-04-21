@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -27,18 +26,14 @@ class GenerateExampleStoreCard
             ->addSecondaryField('tier', 'Roaster')
             ->addAuxiliaryField('next-reward', 'Free flat white', label: 'Next reward')
             ->setLogoImage(
-                Image::make(
-                    x1Path: public_path('images/brew-code-logo.png'),
-                    x2Path: public_path('images/brew-code-logo@2x.png'),
-                    x3Path: public_path('images/brew-code-logo@3x.png'),
-                )
+                x1Path: public_path('images/brew-code-logo.png'),
+                x2Path: public_path('images/brew-code-logo@2x.png'),
+                x3Path: public_path('images/brew-code-logo@3x.png'),
             )
             ->setIconImage(
-                Image::make(
-                    x1Path: public_path('images/brew-code-icon.png'),
-                    x2Path: public_path('images/brew-code-icon@2x.png'),
-                    x3Path: public_path('images/brew-code-icon@3x.png'),
-                )
+                x1Path: public_path('images/brew-code-icon.png'),
+                x2Path: public_path('images/brew-code-icon@2x.png'),
+                x3Path: public_path('images/brew-code-icon@3x.png'),
             )
             ->save();
 
