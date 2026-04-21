@@ -14,7 +14,7 @@
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^3.6",
-        "spatie/laravel-mobile-pass": "@dev"
+        "spatie/laravel-mobile-pass": "^0.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -89,15 +89,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../laravel-mobile-pass",
-            "options": {
-                "symlink": true
-            }
-        }
-    ]
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }

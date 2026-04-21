@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca9474b16efd356f29a22ab18e421f07",
+    "content-hash": "81373c1376d2295a43082f389b6bc058",
     "packages": [
         {
             "name": "brick/math",
@@ -3730,11 +3730,17 @@
         },
         {
             "name": "spatie/laravel-mobile-pass",
-            "version": "dev-main",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-mobile-pass.git",
+                "reference": "5e5802a38a3c05b360cf46dfe01d65f2c5c6562c"
+            },
             "dist": {
-                "type": "path",
-                "url": "../laravel-mobile-pass",
-                "reference": "1003b8a015ff8b154a1a724ebe4e03e90e7b162b"
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/5e5802a38a3c05b360cf46dfe01d65f2c5c6562c",
+                "reference": "5e5802a38a3c05b360cf46dfe01d65f2c5c6562c",
+                "shasum": ""
             },
             "require": {
                 "ext-zip": "*",
@@ -3774,32 +3780,7 @@
                     "Spatie\\LaravelMobilePass\\Database\\Factories\\": "database/factories/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Spatie\\LaravelMobilePass\\Tests\\": "tests/",
-                    "Workbench\\App\\": "workbench/app/"
-                }
-            },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@composer run prepare"
-                ],
-                "prepare": [
-                    "@php vendor/bin/testbench package:discover --ansi"
-                ],
-                "analyse": [
-                    "vendor/bin/phpstan analyse"
-                ],
-                "test": [
-                    "vendor/bin/pest"
-                ],
-                "test-coverage": [
-                    "vendor/bin/pest --coverage"
-                ],
-                "format": [
-                    "vendor/bin/pint"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3818,14 +3799,21 @@
             "description": "Generate mobile passes for iOS and Android",
             "homepage": "https://github.com/spatie/laravel-mobile-pass",
             "keywords": [
-                "Spatie",
                 "laravel",
-                "laravel-mobile-pass"
+                "laravel-mobile-pass",
+                "spatie"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "issues": "https://github.com/spatie/laravel-mobile-pass/issues",
+                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-04-21T13:43:53+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -10149,10 +10137,8 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "spatie/laravel-mobile-pass": 20
-    },
+    "minimum-stability": "stable",
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
