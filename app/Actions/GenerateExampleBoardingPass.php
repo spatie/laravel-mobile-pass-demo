@@ -23,11 +23,11 @@ class GenerateExampleBoardingPass
             ->setBackgroundColour(Colour::makeFromHex('#FFFFFF'))
             ->setLabelColour(Colour::makeFromHex('#F53003'))
             ->addHeaderField('flight-no', 'ART103', label: 'Flight')
-            ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to %@')
+            ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to :value')
             ->addPrimaryField('departure', 'ABU', label: 'Abu Dhabi International')
             ->addPrimaryField('destination', 'LHR', label: 'London Heathrow')
             ->addSecondaryField('name', 'Freek Van der Herten')
-            ->addSecondaryField('gate', 'D64', changeMessage: 'Your gate has changed to %@')
+            ->addSecondaryField('gate', 'D64', changeMessage: 'Your gate has changed to :value')
             ->addAuxiliaryField(
                 'boarding-time',
                 now()->addHour()->toIso8601String(),

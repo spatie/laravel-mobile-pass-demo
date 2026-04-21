@@ -36,7 +36,7 @@ class GenerateExampleEventTicket
             ->addAuxiliaryField(
                 'seat',
                 'General Admission',
-                changeMessage: 'Your seat has changed to %@',
+                changeMessage: 'Your seat has changed to :value',
             )
             ->setLogoImage(
                 Image::make(

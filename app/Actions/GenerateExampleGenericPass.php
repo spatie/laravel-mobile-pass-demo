@@ -36,7 +36,7 @@ class GenerateExampleGenericPass
                 'books-out',
                 '3',
                 label: 'Books on loan',
-                changeMessage: 'You now have %@ books on loan',
+                changeMessage: 'You now have :value books on loan',
             )
             ->setLogoImage(
                 Image::make(
