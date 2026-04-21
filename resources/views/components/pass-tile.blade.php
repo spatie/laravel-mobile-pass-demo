@@ -45,12 +45,7 @@
             <h3 class="text-base font-semibold text-ink">{{ $type->label() }}</h3>
             <p class="text-sm/6 text-pretty text-ink-muted">{{ $type->tagline() }}</p>
         </div>
-        <div class="mt-auto flex items-center justify-between pt-1">
-            <div class="flex items-end gap-px" aria-hidden="true">
-                @foreach([6, 10, 5, 11, 7, 4, 9, 6, 10, 5, 8, 11, 4, 9, 6] as $h)
-                    <span class="block w-0.5 rounded-sm bg-ink/25" style="height: {{ $h * 1.8 }}px;"></span>
-                @endforeach
-            </div>
+        <div class="mt-auto flex items-center justify-end pt-1">
             <span class="flex items-center gap-1.5 text-sm font-medium text-teal">
                 Generate
                 <svg class="size-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" /></svg>

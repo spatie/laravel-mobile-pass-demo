@@ -51,16 +51,55 @@
                         </ol>
                     </div>
                 </x-card>
+            @endif
+        </div>
+
+        {{-- Right: primary action (state-dependent) + metadata --}}
+        <aside class="space-y-4 lg:col-span-2">
+            @if (! $installed)
+                <x-card>
+                    <div class="space-y-5">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="space-y-1">
+                                <p class="text-xs font-medium tracking-wide text-ink-muted uppercase">.pkpass</p>
+                                <h2 class="text-lg font-semibold text-ink">Install on a device</h2>
+                            </div>
+                            <span class="inline-flex shrink-0 items-center gap-2 rounded-full bg-teal-soft px-2.5 py-1 text-xs font-medium text-teal">
+                                <span class="relative flex size-2" aria-hidden="true">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75"></span>
+                                    <span class="relative inline-flex size-2 rounded-full bg-teal"></span>
+                                </span>
+                                Waiting
+                            </span>
+                        </div>
+
+                        <div class="overflow-hidden rounded bg-surface-sunken ring-1 ring-parchment-strong/70">
+                            <div class="aspect-square w-full">
+                                {!! $downloadQr !!}
+                            </div>
+                        </div>
+
+                        <p class="text-sm/6 text-pretty text-ink-muted">
+                            Scan the code with your iPhone, or grab the file. This panel updates automatically the moment Wallet registers the pass.
+                        </p>
+
+                        <x-button :href="$downloadUrl" variant="primary" class="w-full">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM4 16a1 1 0 0 1 1 1v2h14v-2a1 1 0 1 1 2 0v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z"/></svg>
+                            Download .pkpass
+                        </x-button>
+                    </div>
+                </x-card>
             @elseif (! $hasChanged)
                 <x-card>
-                    <div class="space-y-4">
-                        <div>
+                    <div class="space-y-5">
+                        <div class="space-y-1">
+                            <p class="text-xs font-medium tracking-wide text-teal uppercase">Installed</p>
                             <h2 class="text-lg font-semibold text-ink">Push an update</h2>
-                            <p class="max-w-[64ch] text-sm/6 text-pretty text-ink-muted">
-                                Your pass is registered. Trigger a change and the package will dispatch <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">PushPassUpdateJob</code>, which calls Apple’s push service. Wallet on your device will pull the new version within a minute.
-                            </p>
                         </div>
-                        <x-button wire:click="simulateChange" variant="primary">
+                        <p class="text-sm/6 text-pretty text-ink-muted">
+                            Your pass is registered on a device. Trigger a change and the package dispatches <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">PushPassUpdateJob</code>, which calls Apple’s push service. Wallet pulls the new version within a minute.
+                        </p>
+                        <x-button wire:click="simulateChange" variant="primary" class="w-full">
                             {{ $passType->simulateChangeLabel() }}
                             <svg class="size-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clip-rule="evenodd" /></svg>
                         </x-button>
@@ -68,41 +107,26 @@
                 </x-card>
             @else
                 <x-card>
-                    <div class="space-y-3">
-                        <h2 class="text-lg font-semibold text-ink">Update sent</h2>
-                        <p class="max-w-[64ch] text-base/7 text-pretty text-ink-muted">
+                    <div class="space-y-4">
+                        <div class="flex items-start justify-between gap-3">
+                            <div class="space-y-1">
+                                <p class="text-xs font-medium tracking-wide text-teal uppercase">Update queued</p>
+                                <h2 class="text-lg font-semibold text-ink">Update sent</h2>
+                            </div>
+                            <span class="inline-flex shrink-0 items-center gap-2 rounded-full bg-teal-soft px-2.5 py-1 text-xs font-medium text-teal">
+                                <span class="relative flex size-2" aria-hidden="true">
+                                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75"></span>
+                                    <span class="relative inline-flex size-2 rounded-full bg-teal"></span>
+                                </span>
+                                Pushing
+                            </span>
+                        </div>
+                        <p class="text-sm/6 text-pretty text-ink-muted">
                             Apple has been notified. Your iPhone should pull the latest version within a minute. Apple rate-limits updates to the same pass, so a second change in a 10-minute window may take longer.
                         </p>
                     </div>
                 </x-card>
             @endif
-        </div>
-
-        {{-- Right: download / QR --}}
-        <aside class="space-y-4 lg:col-span-2">
-            <x-card>
-                <div class="space-y-5">
-                    <div class="space-y-1">
-                        <p class="text-xs font-medium tracking-wide text-ink-muted uppercase">.pkpass</p>
-                        <h2 class="text-lg font-semibold text-ink">Install on a device</h2>
-                    </div>
-
-                    <div class="overflow-hidden rounded bg-surface-sunken ring-1 ring-parchment-strong/70">
-                        <div class="aspect-square w-full">
-                            {!! $downloadQr !!}
-                        </div>
-                    </div>
-
-                    <p class="text-sm/6 text-pretty text-ink-muted">
-                        Scan the code with your iPhone, or use the button below to grab the file.
-                    </p>
-
-                    <x-button :href="$downloadUrl" variant="primary" class="w-full">
-                        <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1zM4 16a1 1 0 0 1 1 1v2h14v-2a1 1 0 1 1 2 0v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1z"/></svg>
-                        Download .pkpass
-                    </x-button>
-                </div>
-            </x-card>
 
             <dl class="grid grid-cols-1 gap-3 text-sm sm:grid-cols-2 lg:grid-cols-1">
                 <div class="rounded bg-surface ring-1 ring-parchment-strong/60 px-4 py-3">
