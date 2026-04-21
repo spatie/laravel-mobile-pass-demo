@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
 use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
@@ -18,9 +17,9 @@ class GenerateExampleGenericPass
             ->setOrganisationName('Spatie Library')
             ->setSerialNumber('pending')
             ->setDescription('Spatie Library — Member Card')
-            ->setBackgroundColour(Colour::makeFromHex('#F7F1E3'))
-            ->setForegroundColour(Colour::makeFromHex('#1B1B18'))
-            ->setLabelColour(Colour::makeFromHex('#4C5389'))
+            ->setBackgroundColour('#F7F1E3')
+            ->setForegroundColour('#1B1B18')
+            ->setLabelColour('#4C5389')
             ->addHeaderField('tier', 'Lifetime', label: 'Membership')
             ->addField('member', 'Freek Van der Herten')
             ->addSecondaryField('member-no', 'SL-0001', label: 'Member №')

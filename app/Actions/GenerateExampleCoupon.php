@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -17,9 +16,9 @@ class GenerateExampleCoupon
             ->setOrganisationName('Laravel King')
             ->setSerialNumber('pending')
             ->setDescription('Laravel Exclusive Coupon')
-            ->setBackgroundColour(Colour::makeFromHex('#512314'))
-            ->setLabelColour(Colour::makeFromHex('#F5EBDC'))
-            ->setForegroundColour(Colour::makeFromHex('#FF8629'))
+            ->setBackgroundColour('#512314')
+            ->setLabelColour('#F5EBDC')
+            ->setForegroundColour('#FF8629')
             ->addHeaderField(
                 'expiry',
                 now()->addDay()->toIso8601String(),

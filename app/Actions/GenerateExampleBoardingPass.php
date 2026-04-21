@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
 use Spatie\LaravelMobilePass\Enums\TimeStyleType;
@@ -19,8 +18,8 @@ class GenerateExampleBoardingPass
             ->setOrganisationName('Artisan Airways')
             ->setSerialNumber('pending')
             ->setDescription('Boarding Pass')
-            ->setBackgroundColour(Colour::makeFromHex('#FFFFFF'))
-            ->setLabelColour(Colour::makeFromHex('#F53003'))
+            ->setBackgroundColour('#FFFFFF')
+            ->setLabelColour('#F53003')
             ->addHeaderField('flight-no', 'ART103', label: 'Flight')
             ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to :value')
             ->addField('departure', 'ABU', label: 'Abu Dhabi International')

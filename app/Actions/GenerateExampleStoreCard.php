@@ -4,7 +4,6 @@ namespace App\Actions;
 
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
@@ -17,9 +16,9 @@ class GenerateExampleStoreCard
             ->setOrganisationName('Brew & Code')
             ->setSerialNumber('pending')
             ->setDescription('Brew & Code loyalty card')
-            ->setBackgroundColour(Colour::makeFromHex('#3B2417'))
-            ->setForegroundColour(Colour::makeFromHex('#F7E6C4'))
-            ->setLabelColour(Colour::makeFromHex('#E2C299'))
+            ->setBackgroundColour('#3B2417')
+            ->setForegroundColour('#F7E6C4')
+            ->setLabelColour('#E2C299')
             ->addHeaderField('member-since', 'Since 2024', label: 'Member')
             ->addField('balance', '7 / 10', label: 'Points', changeMessage: 'You now have :value points')
             ->addSecondaryField('member', 'Freek Van der Herten')
