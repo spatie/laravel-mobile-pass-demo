@@ -51,7 +51,7 @@ class GenerateExampleBoardingPass
             )
             ->save();
 
-        $barcode = Barcode::make(BarcodeType::PDF417, Str::random(128))->toArray();
+        $barcode = Barcode::make(BarcodeType::Pdf417, Str::random(128))->toArray();
 
         $pass->update([
             'content' => [

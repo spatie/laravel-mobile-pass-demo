@@ -48,7 +48,7 @@ class GenerateExampleGenericPass
             )
             ->save();
 
-        $barcode = Barcode::make(BarcodeType::QR, Str::random(24))->toArray();
+        $barcode = Barcode::make(BarcodeType::Qr, Str::random(24))->toArray();
 
         $pass->update([
             'content' => [

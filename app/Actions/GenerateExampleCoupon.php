@@ -39,7 +39,7 @@ class GenerateExampleCoupon
             ->save();
 
         $barcode = Barcode::make(
-            BarcodeType::QR,
+            BarcodeType::Qr,
             'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         )->toArray();
 

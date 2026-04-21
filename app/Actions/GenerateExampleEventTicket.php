@@ -48,7 +48,7 @@ class GenerateExampleEventTicket
             )
             ->save();
 
-        $barcode = Barcode::make(BarcodeType::QR, Str::random(32))->toArray();
+        $barcode = Barcode::make(BarcodeType::Qr, Str::random(32))->toArray();
 
         $pass->update([
             'content' => [
