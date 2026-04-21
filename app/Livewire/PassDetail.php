@@ -30,10 +30,10 @@ class PassDetail extends Component
     {
         match ($this->mobilePass->builder_name) {
             CouponPassBuilder::name() => $this->expireCoupon(),
-            AirlinePassBuilder::name() => $this->updateField('seat', rand(0, 10) * 10 .'F'),
-            EventTicketPassBuilder::name() => $this->updateField('seat', 'Row '.chr(rand(65, 80)).' · Seat '.rand(1, 120)),
-            StoreCardPassBuilder::name() => $this->updateField('balance', rand(1, 10).' / 10'),
-            GenericPassBuilder::name() => $this->updateField('books-out', (string) rand(0, 12)),
+            AirlinePassBuilder::name() => $this->mobilePass->updateField('seat', rand(0, 10) * 10 .'F'),
+            EventTicketPassBuilder::name() => $this->mobilePass->updateField('seat', 'Row '.chr(rand(65, 80)).' · Seat '.rand(1, 120)),
+            StoreCardPassBuilder::name() => $this->mobilePass->updateField('balance', rand(1, 10).' / 10'),
+            GenericPassBuilder::name() => $this->mobilePass->updateField('books-out', (string) rand(0, 12)),
         };
 
         $this->hasChanged = true;
@@ -41,20 +41,8 @@ class PassDetail extends Component
 
     protected function expireCoupon(): void
     {
-        $this->mobilePass
-            ->builder()
-            ->updateField('expiry', 'Expired')
-            ->save();
-
+        $this->mobilePass->updateField('expiry', 'Expired');
         $this->mobilePass->expire();
-    }
-
-    protected function updateField(string $key, string $value): void
-    {
-        $this->mobilePass
-            ->builder()
-            ->updateField($key, $value)
-            ->save();
     }
 
     public function passType(): PassType
