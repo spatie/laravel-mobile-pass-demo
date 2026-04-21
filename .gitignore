@@ -31,3 +31,7 @@ Thumbs.db
 /*.key
 /*.csr
 /public/pass.pkpass
+
+# Local dev artifacts
+/.claude/scheduled_tasks.lock
+/*.png
