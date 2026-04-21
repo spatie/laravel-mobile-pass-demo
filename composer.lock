@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81373c1376d2295a43082f389b6bc058",
+    "content-hash": "ea78c83f54068ccf6c3428681acad2fe",
     "packages": [
         {
             "name": "brick/math",
@@ -3730,16 +3730,16 @@
         },
         {
             "name": "spatie/laravel-mobile-pass",
-            "version": "0.1.2",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-mobile-pass.git",
-                "reference": "2bf302bd988a0a432fe2a7b8497987c9fb067ee2"
+                "reference": "363de4105957a8b72ede4f77245e8513f9c221dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/2bf302bd988a0a432fe2a7b8497987c9fb067ee2",
-                "reference": "2bf302bd988a0a432fe2a7b8497987c9fb067ee2",
+                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/363de4105957a8b72ede4f77245e8513f9c221dc",
+                "reference": "363de4105957a8b72ede4f77245e8513f9c221dc",
                 "shasum": ""
             },
             "require": {
@@ -3805,7 +3805,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-mobile-pass/issues",
-                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.1.2"
+                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.2.0"
             },
             "funding": [
                 {
@@ -3813,7 +3813,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-21T14:55:26+00:00"
+            "time": "2026-04-21T18:51:37+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
