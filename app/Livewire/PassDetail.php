@@ -7,7 +7,6 @@ use App\Support\PassType;
 use Livewire\Component;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
 use Spatie\LaravelMobilePass\Builders\Apple\EventTicketPassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
@@ -44,7 +43,7 @@ class PassDetail extends Component
     {
         $this->mobilePass
             ->builder()
-            ->updateField('expiry', fn (FieldContent $field) => $field->withValue('Expired'))
+            ->updateField('expiry', 'Expired')
             ->save();
 
         $this->mobilePass->expire();
@@ -54,7 +53,7 @@ class PassDetail extends Component
     {
         $this->mobilePass
             ->builder()
-            ->updateField($key, fn (FieldContent $field) => $field->withValue($value))
+            ->updateField($key, $value)
             ->save();
     }
 

@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
@@ -23,33 +22,21 @@ class GenerateExampleGenericPass
             ->setBackgroundColour(Colour::makeFromHex('#F7F1E3'))
             ->setForegroundColour(Colour::makeFromHex('#1B1B18'))
             ->setLabelColour(Colour::makeFromHex('#4C5389'))
-            ->setHeaderFields(
-                FieldContent::make('tier')
-                    ->withLabel('Membership')
-                    ->withValue('Lifetime'),
+            ->addHeaderField('tier', 'Lifetime', label: 'Membership')
+            ->addPrimaryField('member', 'Freek Van der Herten')
+            ->addSecondaryField('member-no', 'SL-0001', label: 'Member №')
+            ->addSecondaryField('branch', 'Antwerp Central')
+            ->addAuxiliaryField(
+                'valid-until',
+                now()->addYears(99)->toIso8601String(),
+                label: 'Valid until',
+                dateStyle: DateType::Medium,
             )
-            ->setPrimaryFields(
-                FieldContent::make('member')
-                    ->withLabel('Member')
-                    ->withValue('Freek Van der Herten'),
-            )
-            ->setSecondaryFields(
-                FieldContent::make('member-no')
-                    ->withLabel('Member №')
-                    ->withValue('SL-0001'),
-                FieldContent::make('branch')
-                    ->withLabel('Branch')
-                    ->withValue('Antwerp Central'),
-            )
-            ->setAuxiliaryFields(
-                FieldContent::make('valid-until')
-                    ->withLabel('Valid until')
-                    ->withValue(now()->addYears(99)->toIso8601String())
-                    ->usingDateType(DateType::Medium),
-                FieldContent::make('books-out')
-                    ->withLabel('Books on loan')
-                    ->withValue('3')
-                    ->showMessageWhenChanged('You now have %@ books on loan'),
+            ->addAuxiliaryField(
+                'books-out',
+                '3',
+                label: 'Books on loan',
+                changeMessage: 'You now have %@ books on loan',
             )
             ->setLogoImage(
                 Image::make(

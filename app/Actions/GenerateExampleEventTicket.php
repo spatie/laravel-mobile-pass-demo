@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\EventTicketPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
@@ -24,34 +23,20 @@ class GenerateExampleEventTicket
             ->setBackgroundColour(Colour::makeFromHex('#0A0A0A'))
             ->setForegroundColour(Colour::makeFromHex('#FFFFFF'))
             ->setLabelColour(Colour::makeFromHex('#FF2D20'))
-            ->setHeaderFields(
-                FieldContent::make('doors')
-                    ->withLabel('Doors')
-                    ->withValue('2026-07-28T08:30:00-04:00')
-                    ->usingDateType(DateType::Medium)
-                    ->usingTimeType(TimeStyleType::Short),
+            ->addHeaderField(
+                'doors',
+                '2026-07-28T08:30:00-04:00',
+                dateStyle: DateType::Medium,
+                timeStyle: TimeStyleType::Short,
             )
-            ->setPrimaryFields(
-                FieldContent::make('event')
-                    ->withLabel('Event')
-                    ->withValue('Laracon US 2026'),
-            )
-            ->setSecondaryFields(
-                FieldContent::make('attendee')
-                    ->withLabel('Attendee')
-                    ->withValue('Freek Van der Herten'),
-                FieldContent::make('venue')
-                    ->withLabel('Venue')
-                    ->withValue('SoWa Power Station'),
-            )
-            ->setAuxiliaryFields(
-                FieldContent::make('location')
-                    ->withLabel('Location')
-                    ->withValue('Boston, MA'),
-                FieldContent::make('seat')
-                    ->withLabel('Seat')
-                    ->withValue('General Admission')
-                    ->showMessageWhenChanged('Your seat has changed to %@'),
+            ->addPrimaryField('event', 'Laracon US 2026')
+            ->addSecondaryField('attendee', 'Freek Van der Herten')
+            ->addSecondaryField('venue', 'SoWa Power Station')
+            ->addAuxiliaryField('location', 'Boston, MA')
+            ->addAuxiliaryField(
+                'seat',
+                'General Admission',
+                changeMessage: 'Your seat has changed to %@',
             )
             ->setLogoImage(
                 Image::make(

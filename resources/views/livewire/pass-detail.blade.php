@@ -31,11 +31,7 @@
     ->setOrganisationName(...)
     ->setSerialNumber($id)
     ->setDescription(...)
-    ->setPrimaryFields(
-        FieldContent::make('event')
-            ->withLabel('Event')
-            ->withValue('Laracon US 2026'),
-    )
+    ->addPrimaryField('event', 'Laracon US 2026')
     ->setLogoImage(Image::make(...))
     ->save();</x-code>
                     <p class="text-sm/6 text-ink-muted">

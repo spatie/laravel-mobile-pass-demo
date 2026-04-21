@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Enums\DateType;
@@ -23,42 +22,20 @@ class GenerateExampleBoardingPass
             ->setDescription('Boarding Pass')
             ->setBackgroundColour(Colour::makeFromHex('#FFFFFF'))
             ->setLabelColour(Colour::makeFromHex('#F53003'))
-            ->setHeaderFields(
-                FieldContent::make('flight-no')
-                    ->withLabel('Flight')
-                    ->withValue('ART103'),
-                FieldContent::make('seat')
-                    ->withLabel('Seat')
-                    ->withValue('66F')
-                    ->showMessageWhenChanged('Your seat has changed to %@'),
+            ->addHeaderField('flight-no', 'ART103', label: 'Flight')
+            ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to %@')
+            ->addPrimaryField('departure', 'ABU', label: 'Abu Dhabi International')
+            ->addPrimaryField('destination', 'LHR', label: 'London Heathrow')
+            ->addSecondaryField('name', 'Freek Van der Herten')
+            ->addSecondaryField('gate', 'D64', changeMessage: 'Your gate has changed to %@')
+            ->addAuxiliaryField(
+                'boarding-time',
+                now()->addHour()->toIso8601String(),
+                label: 'Boarding Time',
+                dateStyle: DateType::Short,
+                timeStyle: TimeStyleType::Short,
             )
-            ->setPrimaryFields(
-                FieldContent::make('departure')
-                    ->withLabel('Abu Dhabi International')
-                    ->withValue('ABU'),
-                FieldContent::make('destination')
-                    ->withLabel('London Heathrow')
-                    ->withValue('LHR'),
-            )
-            ->setSecondaryFields(
-                FieldContent::make('name')
-                    ->withLabel('Name')
-                    ->withValue('Freek Van der Herten'),
-                FieldContent::make('gate')
-                    ->withLabel('Gate')
-                    ->withValue('D64')
-                    ->showMessageWhenChanged('Your gate has changed to %@'),
-            )
-            ->setAuxiliaryFields(
-                FieldContent::make('boarding-time')
-                    ->withLabel('Boarding Time')
-                    ->withValue(now()->addHour()->toIso8601String())
-                    ->usingDateType(DateType::Short)
-                    ->usingTimeType(TimeStyleType::Short),
-                FieldContent::make('class')
-                    ->withLabel('Class')
-                    ->withValue('Economy'),
-            )
+            ->addAuxiliaryField('class', 'Economy')
             ->setLogoImage(
                 Image::make(
                     x1Path: public_path('images/artisan-airways-logo.png'),

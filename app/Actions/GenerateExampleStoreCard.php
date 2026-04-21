@@ -5,7 +5,6 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Barcode;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Colour;
-use Spatie\LaravelMobilePass\Builders\Apple\Entities\FieldContent;
 use Spatie\LaravelMobilePass\Builders\Apple\Entities\Image;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
 use Spatie\LaravelMobilePass\Enums\BarcodeType;
@@ -22,30 +21,11 @@ class GenerateExampleStoreCard
             ->setBackgroundColour(Colour::makeFromHex('#3B2417'))
             ->setForegroundColour(Colour::makeFromHex('#F7E6C4'))
             ->setLabelColour(Colour::makeFromHex('#E2C299'))
-            ->setHeaderFields(
-                FieldContent::make('member-since')
-                    ->withLabel('Member')
-                    ->withValue('Since 2024'),
-            )
-            ->setPrimaryFields(
-                FieldContent::make('balance')
-                    ->withLabel('Points')
-                    ->withValue('7 / 10')
-                    ->showMessageWhenChanged('You now have %@ points'),
-            )
-            ->setSecondaryFields(
-                FieldContent::make('member')
-                    ->withLabel('Member')
-                    ->withValue('Freek Van der Herten'),
-                FieldContent::make('tier')
-                    ->withLabel('Tier')
-                    ->withValue('Roaster'),
-            )
-            ->setAuxiliaryFields(
-                FieldContent::make('next-reward')
-                    ->withLabel('Next reward')
-                    ->withValue('Free flat white'),
-            )
+            ->addHeaderField('member-since', 'Since 2024', label: 'Member')
+            ->addPrimaryField('balance', '7 / 10', label: 'Points', changeMessage: 'You now have %@ points')
+            ->addSecondaryField('member', 'Freek Van der Herten')
+            ->addSecondaryField('tier', 'Roaster')
+            ->addAuxiliaryField('next-reward', 'Free flat white', label: 'Next reward')
             ->setLogoImage(
                 Image::make(
                     x1Path: public_path('images/brew-code-logo.png'),
