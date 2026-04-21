@@ -29,7 +29,7 @@ class GenerateExampleEventTicket
                 dateStyle: DateType::Medium,
                 timeStyle: TimeStyleType::Short,
             )
-            ->addPrimaryField('event', 'Laracon US 2026')
+            ->addField('event', 'Laracon US 2026')
             ->addSecondaryField('attendee', 'Freek Van der Herten')
             ->addSecondaryField('venue', 'SoWa Power Station')
             ->addAuxiliaryField('location', 'Boston, MA')

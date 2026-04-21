@@ -23,7 +23,7 @@ class GenerateExampleGenericPass
             ->setForegroundColour(Colour::makeFromHex('#1B1B18'))
             ->setLabelColour(Colour::makeFromHex('#4C5389'))
             ->addHeaderField('tier', 'Lifetime', label: 'Membership')
-            ->addPrimaryField('member', 'Freek Van der Herten')
+            ->addField('member', 'Freek Van der Herten')
             ->addSecondaryField('member-no', 'SL-0001', label: 'Member №')
             ->addSecondaryField('branch', 'Antwerp Central')
             ->addAuxiliaryField(

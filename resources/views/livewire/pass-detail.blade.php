@@ -31,7 +31,7 @@
     ->setOrganisationName(...)
     ->setSerialNumber($id)
     ->setDescription(...)
-    ->addPrimaryField('event', 'Laracon US 2026')
+    ->addField('event', 'Laracon US 2026')
     ->setLogoImage(Image::make(...))
     ->save();</x-code>
                     <p class="text-sm/6 text-ink-muted">

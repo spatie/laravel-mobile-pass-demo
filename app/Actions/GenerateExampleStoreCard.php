@@ -22,7 +22,7 @@ class GenerateExampleStoreCard
             ->setForegroundColour(Colour::makeFromHex('#F7E6C4'))
             ->setLabelColour(Colour::makeFromHex('#E2C299'))
             ->addHeaderField('member-since', 'Since 2024', label: 'Member')
-            ->addPrimaryField('balance', '7 / 10', label: 'Points', changeMessage: 'You now have :value points')
+            ->addField('balance', '7 / 10', label: 'Points', changeMessage: 'You now have :value points')
             ->addSecondaryField('member', 'Freek Van der Herten')
             ->addSecondaryField('tier', 'Roaster')
             ->addAuxiliaryField('next-reward', 'Free flat white', label: 'Next reward')

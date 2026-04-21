@@ -24,8 +24,8 @@ class GenerateExampleBoardingPass
             ->setLabelColour(Colour::makeFromHex('#F53003'))
             ->addHeaderField('flight-no', 'ART103', label: 'Flight')
             ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to :value')
-            ->addPrimaryField('departure', 'ABU', label: 'Abu Dhabi International')
-            ->addPrimaryField('destination', 'LHR', label: 'London Heathrow')
+            ->addField('departure', 'ABU', label: 'Abu Dhabi International')
+            ->addField('destination', 'LHR', label: 'London Heathrow')
             ->addSecondaryField('name', 'Freek Van der Herten')
             ->addSecondaryField('gate', 'D64', changeMessage: 'Your gate has changed to :value')
             ->addAuxiliaryField(
