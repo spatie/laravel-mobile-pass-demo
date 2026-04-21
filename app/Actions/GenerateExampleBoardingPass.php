@@ -19,6 +19,7 @@ class GenerateExampleBoardingPass
     {
         $pass = AirlinePassBuilder::make()
             ->setOrganisationName('Artisan Airways')
+            ->setSerialNumber('pending')
             ->setDescription('Boarding Pass')
             ->setBackgroundColour(Colour::makeFromHex('#FFFFFF'))
             ->setLabelColour(Colour::makeFromHex('#F53003'))
@@ -84,7 +85,12 @@ class GenerateExampleBoardingPass
         $barcode = Barcode::make(BarcodeType::PDF417, Str::random(128))->toArray();
 
         $pass->update([
-            'content' => [...$pass->content, 'barcode' => $barcode, 'barcodes' => [$barcode]],
+            'content' => [
+                ...$pass->content,
+                'serialNumber' => $pass->id,
+                'barcode' => $barcode,
+                'barcodes' => [$barcode],
+            ],
         ]);
 
         return $pass;

@@ -17,6 +17,7 @@ class GenerateExampleCoupon
     {
         $pass = CouponPassBuilder::make()
             ->setOrganisationName('Laravel King')
+            ->setSerialNumber('pending')
             ->setDescription('Laravel Exclusive Coupon')
             ->setBackgroundColour(Colour::makeFromHex('#512314'))
             ->setLabelColour(Colour::makeFromHex('#F5EBDC'))
@@ -50,7 +51,12 @@ class GenerateExampleCoupon
         )->toArray();
 
         $pass->update([
-            'content' => [...$pass->content, 'barcode' => $barcode, 'barcodes' => [$barcode]],
+            'content' => [
+                ...$pass->content,
+                'serialNumber' => $pass->id,
+                'barcode' => $barcode,
+                'barcodes' => [$barcode],
+            ],
             'images' => [...$pass->images, 'strip' => [
                 'x1Path' => public_path('images/laravel-king-strip.png'),
                 'x2Path' => public_path('images/laravel-king-strip@2x.png'),

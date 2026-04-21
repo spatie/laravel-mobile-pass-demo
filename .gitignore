@@ -23,3 +23,11 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Apple Wallet certificate artifacts (kept in 1Password)
+/*.p12
+/*.pem
+/*.cer
+/*.key
+/*.csr
+/public/pass.pkpass
