@@ -8,11 +8,16 @@
         'event-ticket' => ['#0A0A0A', 'Event'],
         'store-card' => ['#197593', 'Loyalty'],
         'generic' => ['#5B6B7D', 'Generic'],
+        'wifi-pass' => ['#0F172A', 'Wi-Fi'],
     };
+
+    $href = $type === \App\Support\PassType::WifiPass
+        ? route('wifi-pass')
+        : route('new-pass', ['type' => $type->value]);
 @endphp
 
 <a
-    href="{{ route('new-pass', ['type' => $type->value]) }}"
+    href="{{ $href }}"
     class="group relative flex h-full flex-col overflow-hidden rounded-lg bg-surface shadow-sm ring-1 ring-parchment-strong/60 transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
 >
     {{-- Colored header strip --}}

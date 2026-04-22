@@ -28,6 +28,13 @@ class PassDetail extends Component
 
     public function simulateChange(): void
     {
+        if ($this->passType() === PassType::WifiPass) {
+            $this->mobilePass->updateField('password', 'rotated-'.bin2hex(random_bytes(4)));
+            $this->hasChanged = true;
+
+            return;
+        }
+
         match ($this->mobilePass->builder_name) {
             CouponPassBuilder::name() => $this->expireCoupon(),
             AirlinePassBuilder::name() => $this->mobilePass->updateField('seat', rand(0, 10) * 10 .'F'),
@@ -47,8 +54,7 @@ class PassDetail extends Component
 
     public function passType(): PassType
     {
-        return collect(PassType::cases())
-            ->first(fn (PassType $type) => $type->builderName() === $this->mobilePass->builder_name);
+        return PassType::forMobilePass($this->mobilePass);
     }
 
     public function render()

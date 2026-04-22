@@ -129,7 +129,7 @@
     ->setLogoImage(public_path('images/logo.png'))
     ->save();</x-code>
                 <p class="text-sm/6 text-ink-muted">
-                    See the source for this exact example in <a class="font-medium text-ink underline decoration-parchment-strong underline-offset-4 hover:text-teal hover:decoration-teal" href="https://github.com/spatie/laravel-mobile-pass-demo/blob/main/app/Actions/Generate{{ str_replace(' ', '', \Illuminate\Support\Str::title(\Illuminate\Support\Str::headline($passType->label()))) }}.php" target="_blank" rel="noopener">Generate{{ str_replace(' ', '', \Illuminate\Support\Str::title(\Illuminate\Support\Str::headline($passType->label()))) }}.php</a>.
+                    See the source for this exact example in <a class="font-medium text-ink underline decoration-parchment-strong underline-offset-4 hover:text-teal hover:decoration-teal" href="https://github.com/spatie/laravel-mobile-pass-demo/blob/main/app/Actions/{{ $passType->actionShortName() }}.php" target="_blank" rel="noopener">{{ $passType->actionShortName() }}.php</a>.
                 </p>
             </div>
         </x-card>
