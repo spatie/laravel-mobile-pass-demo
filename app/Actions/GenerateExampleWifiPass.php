@@ -29,6 +29,7 @@ class GenerateExampleWifiPass
                 x2Path: public_path('images/spatie-library-icon@2x.png'),
                 x3Path: public_path('images/spatie-library-icon@3x.png'),
             )
+            ->setWifiBarcode($ssid, $password)
             ->save();
 
         $pass->update([
