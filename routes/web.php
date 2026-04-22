@@ -6,7 +6,6 @@ use App\Actions\GenerateExampleEventTicket;
 use App\Actions\GenerateExampleGenericPass;
 use App\Actions\GenerateExampleStoreCard;
 use App\Livewire\PassDetail;
-use App\Livewire\WifiPassForm;
 use Illuminate\Support\Facades\Route;
 use Spatie\LaravelMobilePass\Models\MobilePass;
 
@@ -26,8 +25,6 @@ Route::get('/new-pass/{type}', function (string $type) {
 
     return redirect()->route('pass', ['mobilePass' => $mobilePass]);
 })->middleware('throttle:new-pass')->name('new-pass');
-
-Route::get('/wifi-pass', WifiPassForm::class)->name('wifi-pass');
 
 Route::get('/pass/{mobilePass}', PassDetail::class)->name('pass');
 

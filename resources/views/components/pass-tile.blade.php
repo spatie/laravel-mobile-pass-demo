@@ -8,12 +8,9 @@
         'event-ticket' => ['#0A0A0A', 'Event'],
         'store-card' => ['#197593', 'Loyalty'],
         'generic' => ['#5B6B7D', 'Generic'],
-        'wifi-pass' => ['#0F172A', 'Wi-Fi'],
     };
 
-    $href = $type === \App\Support\PassType::WifiPass
-        ? route('wifi-pass')
-        : route('new-pass', ['type' => $type->value]);
+    $href = route('new-pass', ['type' => $type->value]);
 
     $isCoupon = $type === \App\Support\PassType::Coupon;
 @endphp
