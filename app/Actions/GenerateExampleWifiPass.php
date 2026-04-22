@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
-use Spatie\LaravelMobilePass\Enums\BarcodeType;
 use Spatie\LaravelMobilePass\Models\MobilePass;
 
 class GenerateExampleWifiPass
@@ -30,11 +29,7 @@ class GenerateExampleWifiPass
                 x2Path: public_path('images/spatie-library-icon@2x.png'),
                 x3Path: public_path('images/spatie-library-icon@3x.png'),
             )
-            ->setBarcode(
-                BarcodeType::Qr,
-                "WIFI:S:{$ssid};T:WPA;P:{$password};;",
-                altText: $ssid,
-            )
+            ->setWifiBarcode($ssid, $password)
             ->save();
 
         $pass->update([
