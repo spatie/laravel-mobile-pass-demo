@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea78c83f54068ccf6c3428681acad2fe",
+    "content-hash": "6e67c7a2271c83e41f83a5f2bb9a6629",
     "packages": [
         {
             "name": "brick/math",
@@ -1281,16 +1281,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v13.5.0",
+            "version": "v13.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ffa1850049a691b93129808f27ecd10e65c9d1a5"
+                "reference": "416a93ea9c53161e0d4b8a44045f447b65a7d2f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ffa1850049a691b93129808f27ecd10e65c9d1a5",
-                "reference": "ffa1850049a691b93129808f27ecd10e65c9d1a5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/416a93ea9c53161e0d4b8a44045f447b65a7d2f1",
+                "reference": "416a93ea9c53161e0d4b8a44045f447b65a7d2f1",
                 "shasum": ""
             },
             "require": {
@@ -1500,7 +1500,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2026-04-14T13:55:03+00:00"
+            "time": "2026-04-21T13:32:11+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3730,16 +3730,16 @@
         },
         {
             "name": "spatie/laravel-mobile-pass",
-            "version": "0.2.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-mobile-pass.git",
-                "reference": "363de4105957a8b72ede4f77245e8513f9c221dc"
+                "reference": "afff30999d5b332449574079537fa5d181cd16b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/363de4105957a8b72ede4f77245e8513f9c221dc",
-                "reference": "363de4105957a8b72ede4f77245e8513f9c221dc",
+                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/afff30999d5b332449574079537fa5d181cd16b7",
+                "reference": "afff30999d5b332449574079537fa5d181cd16b7",
                 "shasum": ""
             },
             "require": {
@@ -3766,6 +3766,7 @@
                 "spatie/temporary-directory": "^2.3",
                 "spatie/test-time": "^1.3.3"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -3805,7 +3806,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-mobile-pass/issues",
-                "source": "https://github.com/spatie/laravel-mobile-pass/tree/0.2.0"
+                "source": "https://github.com/spatie/laravel-mobile-pass/tree/main"
             },
             "funding": [
                 {
@@ -3813,7 +3814,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-21T18:51:37+00:00"
+            "time": "2026-04-22T08:11:01+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -10138,7 +10139,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "spatie/laravel-mobile-pass": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
