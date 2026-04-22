@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Actions\GenerateQRCodeForPass;
 use App\Support\PassType;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\CouponPassBuilder;
@@ -12,6 +13,7 @@ use Spatie\LaravelMobilePass\Builders\Apple\GenericPassBuilder;
 use Spatie\LaravelMobilePass\Builders\Apple\StoreCardPassBuilder;
 use Spatie\LaravelMobilePass\Models\MobilePass;
 
+#[Layout('components.layouts.app')]
 class PassDetail extends Component
 {
     public MobilePass $mobilePass;

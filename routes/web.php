@@ -26,7 +26,7 @@ Route::get('/new-pass/{type}', function (string $type) {
     return redirect()->route('pass', ['mobilePass' => $mobilePass]);
 })->middleware('throttle:new-pass')->name('new-pass');
 
-Route::get('/pass/{mobilePass}', PassDetail::class)->name('pass');
+Route::livewire('/pass/{mobilePass}', PassDetail::class)->name('pass');
 
 Route::get('/pass/{mobilePass}/download', fn (MobilePass $mobilePass) => $mobilePass)
     ->name('pass.download');
