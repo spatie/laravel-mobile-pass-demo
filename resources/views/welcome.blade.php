@@ -42,48 +42,5 @@
                 @endforeach
             </ul>
         </section>
-
-        {{-- How it works --}}
-        <section aria-labelledby="how-it-works" class="space-y-4">
-            <div class="space-y-1 px-1">
-                <p class="text-xs font-medium tracking-[0.12em] text-teal uppercase">How it works</p>
-                <h2 id="how-it-works" class="text-2xl font-semibold tracking-tight text-ink">Three steps, zero JavaScript</h2>
-            </div>
-            <div class="grid gap-4 lg:grid-cols-3">
-                <x-card>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="flex size-9 items-center justify-center rounded bg-teal text-surface text-sm font-semibold tabular-nums">1</span>
-                            <h3 class="text-base font-semibold text-ink">Pick a template</h3>
-                        </div>
-                        <p class="text-sm/6 text-pretty text-ink-muted">
-                            Each tile maps to one of the package's Apple builders: airline, coupon, event ticket, store card, or generic.
-                        </p>
-                    </div>
-                </x-card>
-                <x-card>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="flex size-9 items-center justify-center rounded bg-teal text-surface text-sm font-semibold tabular-nums">2</span>
-                            <h3 class="text-base font-semibold text-ink">Install on iPhone</h3>
-                        </div>
-                        <p class="text-sm/6 text-pretty text-ink-muted">
-                            Scan the on-screen QR code with your iPhone's camera and tap <em class="text-ink">Add to Apple Wallet</em>.
-                        </p>
-                    </div>
-                </x-card>
-                <x-card>
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="flex size-9 items-center justify-center rounded bg-teal text-surface text-sm font-semibold tabular-nums">3</span>
-                            <h3 class="text-base font-semibold text-ink">Push an update</h3>
-                        </div>
-                        <p class="text-sm/6 text-pretty text-ink-muted">
-                            Trigger a change from the detail page. Apple notifies the device and Wallet pulls the new version automatically.
-                        </p>
-                    </div>
-                </x-card>
-            </div>
-        </section>
     </div>
 </x-layouts.app>
