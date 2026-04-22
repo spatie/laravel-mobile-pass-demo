@@ -4048,12 +4048,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-mobile-pass.git",
-                "reference": "df287f722e7f112daa0059dbd0c244fab1961ddc"
+                "reference": "ec05215db3e987f723718821e30f60e5ec330014"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/df287f722e7f112daa0059dbd0c244fab1961ddc",
-                "reference": "df287f722e7f112daa0059dbd0c244fab1961ddc",
+                "url": "https://api.github.com/repos/spatie/laravel-mobile-pass/zipball/ec05215db3e987f723718821e30f60e5ec330014",
+                "reference": "ec05215db3e987f723718821e30f60e5ec330014",
                 "shasum": ""
             },
             "require": {
@@ -4128,7 +4128,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-22T08:54:28+00:00"
+            "time": "2026-04-22T12:22:26+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
