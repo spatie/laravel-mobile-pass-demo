@@ -55,7 +55,7 @@ enum PassType: string
             self::Coupon => 'Coupons feature a top strip image and large header field, perfect for showing brand artwork above an offer. They can be voided when redeemed, which greys them out in the user’s wallet.',
             self::EventTicket => 'Event tickets can show a full-bleed background image with a small thumbnail, giving the pass a poster-like feel. Headers usually carry the event date and time.',
             self::StoreCard => 'Store cards highlight a primary balance value and let you push updates as the balance changes. The strip image is ideal for branded artwork.',
-            self::Generic => 'Generic passes are the fallback layout, useful for membership cards, library cards, and anything that doesn’t fit the other templates.',
+            self::Generic => 'Generic passes are the fallback layout, useful for membership cards, library cards, and anything that doesn’t fit the other pass types.',
             self::WifiPass => 'A generic pass with a Wi-Fi QR code as its barcode. Scan it with any iPhone or Android camera and the OS offers to join the network. Handy to pin in Wallet for guest networks at home, in an office, or a co-working space.',
         };
     }

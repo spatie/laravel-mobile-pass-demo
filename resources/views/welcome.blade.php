@@ -3,15 +3,11 @@
         {{-- Hero --}}
         <x-card>
             <div class="space-y-6">
-                <p class="inline-flex items-center gap-2 rounded-full bg-teal-soft px-3 py-1 text-xs font-medium tracking-wide text-teal uppercase">
-                    <span class="size-1.5 rounded-full bg-teal"></span>
-                    Demo app for spatie/laravel-mobile-pass
-                </p>
                 <h1 class="max-w-[22ch] text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.05]">
                     Apple Wallet passes, generated from Laravel.
                 </h1>
                 <p class="max-w-[60ch] text-base/7 text-pretty text-ink-muted">
-                    This site is a live demo of <a class="font-medium text-ink underline decoration-parchment-strong underline-offset-4 hover:text-teal hover:decoration-teal" href="https://github.com/spatie/laravel-mobile-pass" target="_blank" rel="noopener">spatie/laravel-mobile-pass</a>. Pick one of the templates below and the demo generates a real, signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> you can install on an iPhone, then push a live update and watch Wallet pull the change.
+                    This site is a live demo of <a class="font-medium text-ink underline decoration-parchment-strong underline-offset-4 hover:text-teal hover:decoration-teal" href="https://github.com/spatie/laravel-mobile-pass" target="_blank" rel="noopener">spatie/laravel-mobile-pass</a>. Pick any of the pass examples below and the demo generates a real, signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> you can install on an iPhone, then push a live update and watch Wallet pull the change.
                 </p>
                 <div class="flex flex-wrap items-center gap-3">
                     <x-button href="https://spatie.be/docs/laravel-mobile-pass" variant="primary" target="_blank" rel="noopener">
@@ -31,21 +27,12 @@
         </x-card>
 
         {{-- Pass picker --}}
-        <section aria-labelledby="pass-picker" class="space-y-4">
-            <div class="flex items-end justify-between gap-4 px-1">
-                <div class="space-y-1">
-                    <p class="text-xs font-medium tracking-[0.12em] text-teal uppercase">Templates</p>
-                    <h2 id="pass-picker" class="text-2xl font-semibold tracking-tight text-ink">Generate a pass</h2>
-                    <p class="max-w-[60ch] text-sm/6 text-ink-muted">Each tile maps to one of the package's Apple builders. Tap one to create a signed <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">.pkpass</code> and install it on your iPhone.</p>
-                </div>
-            </div>
-            <ul role="list" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach (\App\Support\PassType::cases() as $type)
-                    <li>
-                        <x-pass-tile :type="$type" />
-                    </li>
-                @endforeach
-            </ul>
-        </section>
+        <ul role="list" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            @foreach (\App\Support\PassType::cases() as $type)
+                <li>
+                    <x-pass-tile :type="$type" />
+                </li>
+            @endforeach
+        </ul>
     </div>
 </x-layouts.app>

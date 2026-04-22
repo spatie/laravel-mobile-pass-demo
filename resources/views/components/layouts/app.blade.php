@@ -15,13 +15,9 @@
     </head>
     <body class="min-h-dvh bg-parchment text-ink font-sans">
         <div class="isolate mx-auto flex min-h-dvh max-w-6xl flex-col gap-6 px-4 py-5 sm:gap-8 sm:px-6 sm:py-7">
-            <x-site-header />
-
             <main class="flex-1">
                 {{ $slot }}
             </main>
-
-            <x-site-footer />
         </div>
     </body>
 </html>
