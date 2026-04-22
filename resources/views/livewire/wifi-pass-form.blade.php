@@ -68,17 +68,13 @@
     <x-card>
         <div class="space-y-3">
             <h2 class="text-lg font-semibold text-ink">How it's built</h2>
-            <p class="text-sm/6 text-ink-muted">A generic Apple Wallet pass with the SSID shown as a field and the password attached via Apple's <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">wifiAccess</code> semantic tag. Wallet surfaces a "Join Wi-Fi network" button instead of printing the password on the pass. The pass also carries a Wi-Fi URI QR code (<code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">WIFI:S:ssid;T:WPA;P:password;;</code>) so Android cameras can join too.</p>
+            <p class="text-sm/6 text-ink-muted">A generic Apple Wallet pass with the SSID shown as a field and the credentials encoded as a Wi-Fi QR code via <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">setWifiBarcode()</code>. Scan the pass's barcode with any iPhone or Android camera and the OS offers to join the network. The password is also attached via Apple's <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">wifiAccess</code> semantic tag, which can surface a "Join Wi-Fi network" button inside Wallet on supported pass types.</p>
             <x-code>GenericPassBuilder::make()
     ->setOrganisationName('Wi-Fi share')
     ->setDescription('Wi-Fi credentials for '.$ssid)
     ->addField('ssid', $ssid, label: 'Network')
     ->addWifiNetwork($ssid, $password)
-    ->setBarcode(
-        BarcodeType::Qr,
-        "WIFI:S:{$ssid};T:WPA;P:{$password};;",
-        altText: $ssid,
-    )
+    ->setWifiBarcode($ssid, $password)
     ->save();</x-code>
             <p class="text-sm/6 text-ink-muted">
                 See the source in <a class="font-medium text-ink underline decoration-parchment-strong underline-offset-4 hover:text-teal hover:decoration-teal" href="https://github.com/spatie/laravel-mobile-pass-demo/blob/main/app/Actions/GenerateExampleWifiPass.php" target="_blank" rel="noopener">GenerateExampleWifiPass.php</a>.
