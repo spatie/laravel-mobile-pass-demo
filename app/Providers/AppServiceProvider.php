@@ -14,8 +14,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         RateLimiter::for('new-pass', fn (Request $request) => [
-            Limit::perHour(10)->by($request->ip()),
-            Limit::perDay(200)->by('new-pass-global'),
+            Limit::perHour(30)->by($request->ip()),
+            Limit::perDay(1000)->by('new-pass-global'),
         ]);
     }
 }

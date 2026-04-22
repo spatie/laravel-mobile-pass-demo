@@ -12,24 +12,22 @@ use Spatie\LaravelMobilePass\Models\MobilePass;
 
 Route::get('/', fn () => view('welcome'));
 
-Route::middleware('throttle:new-pass')->group(function () {
-    Route::get('/new-pass/{type}', function (string $type) {
-        $action = match ($type) {
-            'boarding-pass' => GenerateExampleBoardingPass::class,
-            'coupon' => GenerateExampleCoupon::class,
-            'event-ticket' => GenerateExampleEventTicket::class,
-            'generic' => GenerateExampleGenericPass::class,
-            'store-card' => GenerateExampleStoreCard::class,
-            default => abort(404),
-        };
+Route::get('/new-pass/{type}', function (string $type) {
+    $action = match ($type) {
+        'boarding-pass' => GenerateExampleBoardingPass::class,
+        'coupon' => GenerateExampleCoupon::class,
+        'event-ticket' => GenerateExampleEventTicket::class,
+        'generic' => GenerateExampleGenericPass::class,
+        'store-card' => GenerateExampleStoreCard::class,
+        default => abort(404),
+    };
 
-        $mobilePass = app($action)->execute();
+    $mobilePass = app($action)->execute();
 
-        return redirect()->route('pass', ['mobilePass' => $mobilePass]);
-    })->name('new-pass');
+    return redirect()->route('pass', ['mobilePass' => $mobilePass]);
+})->middleware('throttle:new-pass')->name('new-pass');
 
-    Route::get('/wifi-pass', WifiPassForm::class)->name('wifi-pass');
-});
+Route::get('/wifi-pass', WifiPassForm::class)->name('wifi-pass');
 
 Route::get('/pass/{mobilePass}', PassDetail::class)->name('pass');
 

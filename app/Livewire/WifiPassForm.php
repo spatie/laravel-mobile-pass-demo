@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Actions\GenerateExampleWifiPass;
+use Illuminate\Support\Facades\RateLimiter;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -17,6 +18,14 @@ class WifiPassForm extends Component
     public function generate()
     {
         $this->validate();
+
+        $key = 'new-pass:'.request()->ip();
+
+        if (RateLimiter::tooManyAttempts($key, 30)) {
+            abort(429, 'Too Many Requests');
+        }
+
+        RateLimiter::hit($key, 3600);
 
         $mobilePass = app(GenerateExampleWifiPass::class)->execute($this->ssid, $this->password);
 
