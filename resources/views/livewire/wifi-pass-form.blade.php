@@ -43,10 +43,10 @@
                         <label for="wifi-password" class="block text-sm font-medium text-ink">Password</label>
                         <input
                             id="wifi-password"
-                            type="text"
+                            type="password"
                             wire:model="password"
                             class="block w-full rounded border border-parchment-strong/70 bg-surface px-3 py-2 text-sm text-ink shadow-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
-                            autocomplete="off"
+                            autocomplete="new-password"
                             spellcheck="false"
                             required
                         />
@@ -68,12 +68,12 @@
     <x-card>
         <div class="space-y-3">
             <h2 class="text-lg font-semibold text-ink">How it's built</h2>
-            <p class="text-sm/6 text-ink-muted">A generic Apple Wallet pass with the SSID and password as fields, and a QR-code barcode whose contents use the standard Wi-Fi URI scheme (<code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">WIFI:S:ssid;T:WPA;P:password;;</code>). iOS and Android's camera apps recognise that format and prompt the user to join.</p>
+            <p class="text-sm/6 text-ink-muted">A generic Apple Wallet pass with the SSID shown as a field and the password attached via Apple's <code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">wifiAccess</code> semantic tag. Wallet surfaces a "Join Wi-Fi network" button instead of printing the password on the pass. The pass also carries a Wi-Fi URI QR code (<code class="rounded bg-teal-soft px-1.5 py-0.5 text-[0.8125rem] text-teal">WIFI:S:ssid;T:WPA;P:password;;</code>) so Android cameras can join too.</p>
             <x-code>GenericPassBuilder::make()
     ->setOrganisationName('Wi-Fi share')
     ->setDescription('Wi-Fi credentials for '.$ssid)
     ->addField('ssid', $ssid, label: 'Network')
-    ->addSecondaryField('password', $password, label: 'Password')
+    ->addWifiNetwork($ssid, $password)
     ->setBarcode(
         BarcodeType::Qr,
         "WIFI:S:{$ssid};T:WPA;P:{$password};;",

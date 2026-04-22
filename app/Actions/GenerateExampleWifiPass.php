@@ -19,7 +19,7 @@ class GenerateExampleWifiPass
             ->setLabelColour('#94A3B8')
             ->addHeaderField('type', 'WPA2/WPA3', label: 'Security')
             ->addField('ssid', $ssid, label: 'Network')
-            ->addSecondaryField('password', $password, label: 'Password')
+            ->addWifiNetwork($ssid, $password)
             ->setLogoImage(
                 x1Path: public_path('images/spatie-library-logo.png'),
                 x2Path: public_path('images/spatie-library-logo@2x.png'),
