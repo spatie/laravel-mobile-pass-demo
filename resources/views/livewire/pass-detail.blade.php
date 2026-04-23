@@ -98,7 +98,7 @@
                     <p class="text-sm/6 text-ink-muted">A single fluent builder call generates the pass, signs it with your Apple Developer cert, and stores it in your database.</p>
                 </div>
                 <x-code>{{ $passType->builderShortName() }}::make()
-    ->setOrganisationName(...)
+    ->setOrganizationName(...)
     ->setSerialNumber($id)
     ->setDescription(...)
     ->addField('event', 'Laracon US 2026')

@@ -13,12 +13,12 @@ class GenerateExampleGenericPass
     public function execute(): MobilePass
     {
         $pass = GenericPassBuilder::make()
-            ->setOrganisationName('Spatie Library')
+            ->setOrganizationName('Spatie Library')
             ->setSerialNumber('pending')
             ->setDescription('Spatie Library — Member Card')
-            ->setBackgroundColour('#F7F1E3')
-            ->setForegroundColour('#1B1B18')
-            ->setLabelColour('#4C5389')
+            ->setBackgroundColor('#F7F1E3')
+            ->setForegroundColor('#1B1B18')
+            ->setLabelColor('#4C5389')
             ->addHeaderField('tier', 'Lifetime', label: 'Membership')
             ->addField('member', 'Freek Van der Herten')
             ->addSecondaryField('member-no', 'SL-0001', label: 'Member №')

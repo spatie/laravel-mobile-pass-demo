@@ -12,12 +12,12 @@ class GenerateExampleCoupon
     public function execute(): MobilePass
     {
         $pass = CouponPassBuilder::make()
-            ->setOrganisationName('Laravel King')
+            ->setOrganizationName('Laravel King')
             ->setSerialNumber('pending')
             ->setDescription('Laravel Exclusive Coupon')
-            ->setBackgroundColour('#512314')
-            ->setLabelColour('#F5EBDC')
-            ->setForegroundColour('#FF8629')
+            ->setBackgroundColor('#512314')
+            ->setLabelColor('#F5EBDC')
+            ->setForegroundColor('#FF8629')
             ->addHeaderField(
                 'expiry',
                 now()->addDay()->toIso8601String(),

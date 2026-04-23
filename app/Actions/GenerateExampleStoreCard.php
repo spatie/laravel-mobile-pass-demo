@@ -12,12 +12,12 @@ class GenerateExampleStoreCard
     public function execute(): MobilePass
     {
         $pass = StoreCardPassBuilder::make()
-            ->setOrganisationName('Brew & Code')
+            ->setOrganizationName('Brew & Code')
             ->setSerialNumber('pending')
             ->setDescription('Brew & Code loyalty card')
-            ->setBackgroundColour('#3B2417')
-            ->setForegroundColour('#F7E6C4')
-            ->setLabelColour('#E2C299')
+            ->setBackgroundColor('#3B2417')
+            ->setForegroundColor('#F7E6C4')
+            ->setLabelColor('#E2C299')
             ->addHeaderField('member-since', 'Since 2024', label: 'Member')
             ->addField('balance', '7 / 10', label: 'Points', changeMessage: 'You now have :value points')
             ->addSecondaryField('member', 'Freek Van der Herten')

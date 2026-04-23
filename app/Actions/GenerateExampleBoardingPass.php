@@ -14,11 +14,11 @@ class GenerateExampleBoardingPass
     public function execute(): MobilePass
     {
         $pass = AirlinePassBuilder::make()
-            ->setOrganisationName('Artisan Airways')
+            ->setOrganizationName('Artisan Airways')
             ->setSerialNumber('pending')
             ->setDescription('Boarding Pass')
-            ->setBackgroundColour('#FFFFFF')
-            ->setLabelColour('#F53003')
+            ->setBackgroundColor('#FFFFFF')
+            ->setLabelColor('#F53003')
             ->addHeaderField('flight-no', 'ART103', label: 'Flight')
             ->addHeaderField('seat', '66F', changeMessage: 'Your seat has changed to :value')
             ->addField('departure', 'ABU', label: 'Abu Dhabi International')

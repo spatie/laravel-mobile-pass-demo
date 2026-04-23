@@ -14,12 +14,12 @@ class GenerateExampleEventTicket
     public function execute(): MobilePass
     {
         $pass = EventTicketPassBuilder::make()
-            ->setOrganisationName('Laracon US')
+            ->setOrganizationName('Laracon US')
             ->setSerialNumber('pending')
             ->setDescription('Laracon US 2026 — Admission Ticket')
-            ->setBackgroundColour('#0A0A0A')
-            ->setForegroundColour('#FFFFFF')
-            ->setLabelColour('#FF2D20')
+            ->setBackgroundColor('#0A0A0A')
+            ->setForegroundColor('#FFFFFF')
+            ->setLabelColor('#FF2D20')
             ->addHeaderField(
                 'doors',
                 '2026-07-28T08:30:00-04:00',
