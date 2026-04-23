@@ -1,46 +1,35 @@
 @props(['type'])
 
+@use('App\Support\PassType')
+
 @php
-    /** @var \App\Support\PassType $type */
-    [$headerBg, $eyebrow] = match ($type->value) {
-        'boarding-pass' => ['#172A3D', 'Airline'],
-        'coupon' => ['#F53003', 'Coupon'],
-        'event-ticket' => ['#0A0A0A', 'Event'],
-        'store-card' => ['#197593', 'Loyalty'],
-        'generic' => ['#5B6B7D', 'Generic'],
-    };
-
-    $href = route('new-pass', ['type' => $type->value]);
-
-    $isCoupon = $type === \App\Support\PassType::Coupon;
+    $isCoupon = $type === PassType::Coupon;
 @endphp
 
 <a
-    href="{{ $href }}"
+    href="{{ route('new-pass', ['type' => $type->value]) }}"
     @class([
         'group relative flex h-full flex-col overflow-hidden rounded-lg bg-surface shadow-sm transition-all duration-200 ease-out hover:-translate-y-1 hover:shadow-lg active:translate-y-0 active:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal',
         'ring-1 ring-parchment-strong/60' => ! $isCoupon,
     ])
 >
-    {{-- Colored header strip --}}
-    <div class="flex items-center gap-2.5 px-5 pt-5 pb-9" style="background: {{ $headerBg }};">
+    <div class="flex items-center gap-2.5 px-5 pt-5 pb-9" style="background: {{ $type->headerBackground() }};">
         <span class="flex size-8 items-center justify-center rounded-md bg-white/20 text-white">
-            <span class="size-4">{!! $type->icon() !!}</span>
+            <x-pass-icon :type="$type" class="size-4" />
         </span>
         <span class="text-[10px] font-semibold tracking-[0.18em] text-white/95 uppercase">
-            {{ $eyebrow }}
+            {{ $type->eyebrow() }}
         </span>
     </div>
 
     @if ($isCoupon)
-        {{-- Scalloped coupon edges: a column of parchment-coloured circles bitten into each side --}}
         <div class="pointer-events-none absolute inset-y-0 left-0 flex flex-col justify-between py-4" aria-hidden="true">
-            @for ($i = 0; $i < 9; $i++)
+            @for ($index = 0; $index < 9; $index++)
                 <span class="-ml-2 size-4 rounded-full bg-parchment"></span>
             @endfor
         </div>
         <div class="pointer-events-none absolute inset-y-0 right-0 flex flex-col justify-between py-4" aria-hidden="true">
-            @for ($i = 0; $i < 9; $i++)
+            @for ($index = 0; $index < 9; $index++)
                 <span class="-mr-2 size-4 rounded-full bg-parchment"></span>
             @endfor
         </div>
@@ -48,7 +37,6 @@
             <div class="mx-6 border-t border-dashed border-parchment-strong/80"></div>
         </div>
     @else
-        {{-- Ticket perforation with two edge notches --}}
         <div class="relative h-0" aria-hidden="true">
             <span class="absolute -top-2 -left-2 size-4 rounded-full bg-parchment"></span>
             <span class="absolute -top-2 -right-2 size-4 rounded-full bg-parchment"></span>
@@ -56,7 +44,6 @@
         </div>
     @endif
 
-    {{-- Body --}}
     <div @class([
         'flex flex-1 flex-col gap-5 p-5 pt-6',
         'px-7' => $isCoupon,

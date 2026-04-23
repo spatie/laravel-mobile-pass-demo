@@ -43,11 +43,14 @@ class GenerateExampleCoupon
                 ...$pass->content,
                 'serialNumber' => $pass->id,
             ],
-            'images' => [...$pass->images, 'strip' => [
-                'x1Path' => public_path('images/laravel-king-strip.png'),
-                'x2Path' => public_path('images/laravel-king-strip@2x.png'),
-                'x3Path' => public_path('images/laravel-king-strip@3x.png'),
-            ]],
+            'images' => [
+                ...$pass->images,
+                'strip' => [
+                    'x1Path' => public_path('images/laravel-king-strip.png'),
+                    'x2Path' => public_path('images/laravel-king-strip@2x.png'),
+                    'x3Path' => public_path('images/laravel-king-strip@3x.png'),
+                ],
+            ],
         ]);
 
         return $pass;

@@ -1,6 +1,7 @@
+@use('App\Support\PassType')
+
 <x-layouts.app>
     <div class="space-y-6 sm:space-y-10">
-        {{-- Hero --}}
         <x-card>
             <div class="space-y-6">
                 <h1 class="max-w-[22ch] text-4xl font-semibold tracking-tight text-balance text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.05]">
@@ -26,9 +27,8 @@
             </div>
         </x-card>
 
-        {{-- Pass picker --}}
         <ul role="list" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            @foreach (\App\Support\PassType::cases() as $type)
+            @foreach (PassType::cases() as $type)
                 <li>
                     <x-pass-tile :type="$type" />
                 </li>

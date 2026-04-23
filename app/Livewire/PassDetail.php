@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Actions\GenerateQRCodeForPass;
 use App\Support\PassType;
+use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Spatie\LaravelMobilePass\Builders\Apple\AirlinePassBuilder;
@@ -25,20 +26,30 @@ class PassDetail extends Component
     public function mount(MobilePass $mobilePass): void
     {
         $this->mobilePass = $mobilePass;
-        $this->installed = $mobilePass->registrations()->exists();
     }
 
     public function simulateChange(): void
     {
         match ($this->mobilePass->builder_name) {
             CouponPassBuilder::name() => $this->expireCoupon(),
-            AirlinePassBuilder::name() => $this->mobilePass->updateField('seat', rand(0, 10) * 10 .'F'),
-            EventTicketPassBuilder::name() => $this->mobilePass->updateField('seat', 'Row '.chr(rand(65, 80)).' · Seat '.rand(1, 120)),
-            StoreCardPassBuilder::name() => $this->mobilePass->updateField('balance', rand(1, 10).' / 10'),
+            AirlinePassBuilder::name() => $this->mobilePass->updateField('seat', $this->randomSeatNumber()),
+            EventTicketPassBuilder::name() => $this->mobilePass->updateField('seat', $this->randomSeatAssignment()),
+            StoreCardPassBuilder::name() => $this->mobilePass->updateField('balance', $this->randomBalance()),
             GenericPassBuilder::name() => $this->mobilePass->updateField('books-out', (string) rand(0, 12)),
         };
 
         $this->hasChanged = true;
+    }
+
+    public function render(): View
+    {
+        $this->installed = $this->mobilePass->registrations()->exists();
+
+        return view('livewire.pass-detail')->with([
+            'passType' => PassType::forMobilePass($this->mobilePass),
+            'downloadQr' => app(GenerateQRCodeForPass::class)->execute($this->mobilePass),
+            'downloadUrl' => route('pass.download', ['mobilePass' => $this->mobilePass]),
+        ]);
     }
 
     protected function expireCoupon(): void
@@ -47,19 +58,25 @@ class PassDetail extends Component
         $this->mobilePass->expire();
     }
 
-    public function passType(): PassType
+    protected function randomSeatNumber(): string
     {
-        return PassType::forMobilePass($this->mobilePass);
+        $row = rand(0, 10) * 10;
+
+        return "{$row}F";
     }
 
-    public function render()
+    protected function randomSeatAssignment(): string
     {
-        $this->installed = $this->mobilePass->registrations()->exists();
+        $row = chr(rand(65, 80));
+        $seat = rand(1, 120);
 
-        return view('livewire.pass-detail')->with([
-            'passType' => $this->passType(),
-            'downloadQr' => app(GenerateQRCodeForPass::class)->execute($this->mobilePass),
-            'downloadUrl' => route('pass.download', ['mobilePass' => $this->mobilePass]),
-        ]);
+        return "Row {$row} · Seat {$seat}";
+    }
+
+    protected function randomBalance(): string
+    {
+        $points = rand(1, 10);
+
+        return "{$points} / 10";
     }
 }
