@@ -13,7 +13,7 @@ Route::get('/new-pass/{type}', function (string $type) {
     $mobilePass = app($passType->actionClass())->execute();
 
     return redirect()->route('pass', ['mobilePass' => $mobilePass]);
-})->middleware('throttle:new-pass')->name('new-pass');
+})->name('new-pass');
 
 Route::livewire('/pass/{mobilePass}', PassDetail::class)->name('pass');
 
