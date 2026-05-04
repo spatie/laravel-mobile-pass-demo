@@ -13,7 +13,6 @@ class GenerateExampleStoreCard
     {
         $pass = StoreCardPassBuilder::make()
             ->setOrganizationName('Brew & Code')
-            ->setSerialNumber('pending')
             ->setDescription('Brew & Code loyalty card')
             ->setBackgroundColor('#3B2417')
             ->setForegroundColor('#F7E6C4')
@@ -37,10 +36,6 @@ class GenerateExampleStoreCard
             ->save();
 
         $pass->update([
-            'content' => [
-                ...$pass->content,
-                'serialNumber' => $pass->id,
-            ],
             'images' => [
                 ...$pass->images,
                 'strip' => [

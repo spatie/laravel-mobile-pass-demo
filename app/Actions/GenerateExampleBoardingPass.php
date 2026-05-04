@@ -13,9 +13,8 @@ class GenerateExampleBoardingPass
 {
     public function execute(): MobilePass
     {
-        $pass = AirlinePassBuilder::make()
+        return AirlinePassBuilder::make()
             ->setOrganizationName('Artisan Airways')
-            ->setSerialNumber('pending')
             ->setDescription('Boarding Pass')
             ->setBackgroundColor('#FFFFFF')
             ->setLabelColor('#F53003')
@@ -50,14 +49,5 @@ class GenerateExampleBoardingPass
             )
             ->setBarcode(BarcodeType::Pdf417, Str::random(128))
             ->save();
-
-        $pass->update([
-            'content' => [
-                ...$pass->content,
-                'serialNumber' => $pass->id,
-            ],
-        ]);
-
-        return $pass;
     }
 }

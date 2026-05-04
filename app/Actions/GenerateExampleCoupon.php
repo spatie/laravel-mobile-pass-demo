@@ -13,7 +13,6 @@ class GenerateExampleCoupon
     {
         $pass = CouponPassBuilder::make()
             ->setOrganizationName('Laravel King')
-            ->setSerialNumber('pending')
             ->setDescription('Laravel Exclusive Coupon')
             ->setBackgroundColor('#512314')
             ->setLabelColor('#F5EBDC')
@@ -39,10 +38,6 @@ class GenerateExampleCoupon
             ->save();
 
         $pass->update([
-            'content' => [
-                ...$pass->content,
-                'serialNumber' => $pass->id,
-            ],
             'images' => [
                 ...$pass->images,
                 'strip' => [

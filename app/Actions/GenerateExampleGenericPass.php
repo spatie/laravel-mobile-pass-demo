@@ -14,7 +14,6 @@ class GenerateExampleGenericPass
     {
         $pass = GenericPassBuilder::make()
             ->setOrganizationName('Spatie Library')
-            ->setSerialNumber('pending')
             ->setDescription('Spatie Library — Member Card')
             ->setBackgroundColor('#F7F1E3')
             ->setForegroundColor('#1B1B18')
@@ -49,10 +48,6 @@ class GenerateExampleGenericPass
             ->save();
 
         $pass->update([
-            'content' => [
-                ...$pass->content,
-                'serialNumber' => $pass->id,
-            ],
             'images' => [
                 ...$pass->images,
                 'thumbnail' => [

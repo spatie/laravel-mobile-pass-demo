@@ -15,7 +15,6 @@ class GenerateExampleEventTicket
     {
         $pass = EventTicketPassBuilder::make()
             ->setOrganizationName('Laracon US')
-            ->setSerialNumber('pending')
             ->setDescription('Laracon US 2026 — Admission Ticket')
             ->setBackgroundColor('#0A0A0A')
             ->setForegroundColor('#FFFFFF')
@@ -49,10 +48,6 @@ class GenerateExampleEventTicket
             ->save();
 
         $pass->update([
-            'content' => [
-                ...$pass->content,
-                'serialNumber' => $pass->id,
-            ],
             'images' => [
                 ...$pass->images,
                 'thumbnail' => [
