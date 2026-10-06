@@ -1,5 +1,6 @@
 <?php
 
+use Monolog\Level;
 use Spatie\FlareClient\Sampling\RateSampler;
 use Spatie\LaravelFlare\FlareConfig;
 use Spatie\LaravelFlare\Senders\LaravelHttpSender;
@@ -200,5 +201,5 @@ return [
     |
     */
 
-    'minimal_log_level' => null,
+    'minimal_log_level' => Level::Info,
 ];
