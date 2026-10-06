@@ -58,6 +58,10 @@ return [
             'ignore_exceptions' => false,
         ],
 
+        'flare' => [
+            'driver' => 'flare',
+        ],
+
         'single' => [
             'driver' => 'single',
             'path' => storage_path('logs/laravel.log'),
